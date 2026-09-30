@@ -3,260 +3,1370 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CashFlow Pro - L'application n°1 des Kiosques Mobile Money à Madagascar</title>
-    <meta name="description" content="Téléchargez l'application officielle CashFlow Pro pour gérer votre caisse Mobile Money (MVola, Orange Money, Airtel Money) en toute sécurité.">
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220%22%20width=%22100%22%20height=%22100%22><text y=%22.9em%22 font-size=%2290%22>⚡</text></svg>">
+    <title>CashFlow Pro — Gestion de Caisse Mobile Money pour Kiosques à Madagascar</title>
+    <meta name="description" content="Application Android professionnelle pour les gérants de kiosques Mobile Money à Madagascar (MVola, Orange Money, Airtel Money). Rapprochement automatique, lecture des SMS en direct et calcul des commissions sans calculatrice.">
+    <meta name="theme-color" content="#0A2228">
+    
+    <!-- Open Graph / Meta Partage -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="CashFlow Pro — La caisse automatique des kiosques Mobile Money">
+    <meta property="og:description" content="Automatisez vos opérations MVola, Orange Money et Airtel Money. Zéro erreur de calcul, clôture de caisse instantanée et 100% hors-ligne.">
+    <meta property="og:url" content="https://niainarisoa01.github.io/CashFlow-App/">
+    
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%230F766E'/%3E%3Cpath d='M18 5 8 18h7l-1 9 10-13h-7z' fill='%23fff'/%3E%3C/svg%3E">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+
     <style>
         :root {
-            --primary: #111827;
-            --primary-hover: #1F2937;
-            --accent: #0F766E;
-            --accent-hover: #115E59;
-            --accent-light: #14B8A6;
-            --bg: #F9FAFB;
-            --surface: #FFFFFF;
-            --border: #E5E7EB;
-            --text-primary: #111827;
-            --text-secondary: #4B5563;
-            --text-muted: #9CA3AF;
-            --success: #059669;
+            --brand-dark: #0A2228;
+            --brand-dark-card: #12333A;
+            --brand-teal: #0F766E;
+            --brand-teal-light: #14B8A6;
+            --brand-mint: #5EEAD4;
+            --brand-amber: #F59E0B;
+            --brand-amber-hover: #D97706;
+            --bg-light: #F8FAFC;
+            --surface-white: #FFFFFF;
+            --border-light: #E2E8F0;
+            --text-dark: #0F172A;
+            --text-muted: #64748B;
+            --text-subtle: #94A3B8;
+            --color-mvola: #FFD200;
+            --color-mvola-dark: #855B00;
+            --color-orange: #FF7900;
+            --color-airtel: #E11900;
+            --radius-sm: 8px;
+            --radius-md: 14px;
+            --radius-lg: 22px;
+            --shadow-subtle: 0 4px 20px -2px rgba(10, 34, 40, 0.06);
+            --shadow-card: 0 12px 32px -4px rgba(10, 34, 40, 0.08);
+            --shadow-elevated: 0 24px 48px -8px rgba(10, 34, 40, 0.16);
         }
+
         * { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
         body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-            background: var(--bg);
-            color: var(--text-primary);
+            font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+            background: var(--bg-light);
+            color: var(--text-dark);
             line-height: 1.6;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
+            -webkit-font-smoothing: antialiased;
         }
-        header {
-            background: var(--surface);
-            border-bottom: 1px solid var(--border);
-            padding: 16px 24px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+
+        svg.icon {
+            width: 1.25rem;
+            height: 1.25rem;
+            stroke-width: 2;
+            stroke: currentColor;
+            fill: none;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            display: inline-block;
+            vertical-align: middle;
+            flex-shrink: 0;
         }
-        .brand {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            font-weight: 800;
-            font-size: 20px;
-            color: var(--primary);
-            text-decoration: none;
-        }
-        .brand-icon {
-            width: 36px;
-            height: 36px;
-            background: linear-gradient(135deg, var(--accent), var(--primary));
-            color: #fff;
-            border-radius: 8px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 18px;
-        }
-        main {
-            flex: 1;
-            max-width: 800px;
-            width: 100%;
-            margin: 40px auto;
-            padding: 0 20px;
-        }
-        .hero-card {
-            background: var(--surface);
-            border: 1px solid var(--border);
-            border-radius: 24px;
-            padding: 40px 32px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
+
+        a { text-decoration: none; color: inherit; }
+        .container { max-width: 1140px; margin: 0 auto; padding: 0 24px; }
+
+        /* Top Notification Bar */
+        .top-banner {
+            background: linear-gradient(90deg, #064E3B, #0F766E);
+            color: #ECFDF5;
+            padding: 9px 16px;
             text-align: center;
-        }
-        .badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            background: #ECFDF5;
-            color: var(--success);
-            border: 1px solid #A7F3D0;
-            padding: 6px 14px;
-            border-radius: 999px;
-            font-size: 13px;
-            font-weight: 700;
-            margin-bottom: 24px;
-        }
-        h1 {
-            font-size: 32px;
-            font-weight: 800;
-            color: var(--primary);
-            letter-spacing: -0.5px;
-            margin-bottom: 16px;
-            line-height: 1.25;
-        }
-        .subtitle {
-            font-size: 17px;
-            color: var(--text-secondary);
-            max-width: 600px;
-            margin: 0 auto 32px;
-        }
-        .cta-container {
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-            max-width: 420px;
-            margin: 0 auto 36px;
-        }
-        .btn {
+            font-size: 13.5px;
+            font-weight: 600;
             display: flex;
             align-items: center;
             justify-content: center;
             gap: 10px;
-            padding: 16px 24px;
-            border-radius: 12px;
-            font-size: 16px;
-            font-weight: 700;
-            text-decoration: none;
-            cursor: pointer;
-            transition: all 0.2s;
         }
-        .btn-download {
-            background: var(--primary);
+        .top-banner a {
             color: #FFFFFF;
-            box-shadow: 0 4px 14px rgba(17, 24, 39, 0.2);
+            text-decoration: underline;
+            font-weight: 700;
+            margin-left: 6px;
         }
-        .btn-download:hover {
-            background: var(--primary-hover);
-            transform: translateY(-2px);
+
+        /* Navigation Header */
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            background: rgba(10, 34, 40, 0.96);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
         }
-        .btn-activate {
-            background: transparent;
-            color: var(--accent);
-            border: 2px solid var(--accent);
+        .navbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 72px;
         }
-        .btn-activate:hover {
-            background: #F0FDFA;
+        .brand-logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: #FFFFFF;
+            font-weight: 800;
+            font-size: 20px;
+            letter-spacing: -0.4px;
         }
-        .apk-meta {
-            font-size: 13px;
-            color: var(--text-muted);
-            margin-top: -6px;
-        }
-        .features-grid {
+        .brand-icon-box {
+            width: 38px;
+            height: 38px;
+            border-radius: 10px;
+            background: linear-gradient(135deg, var(--brand-teal-light), var(--brand-mint));
+            color: var(--brand-dark);
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 16px;
-            margin-top: 36px;
-            text-align: left;
+            place-items: center;
+            box-shadow: 0 0 16px rgba(94, 234, 212, 0.35);
         }
-        .feature-box {
-            background: #F9FAFB;
-            border: 1px solid var(--border);
-            border-radius: 16px;
-            padding: 20px;
+        .nav-menu {
+            display: flex;
+            align-items: center;
+            gap: 28px;
         }
-        .feature-icon {
+        .nav-link {
+            color: #CBD5E1;
+            font-size: 14.5px;
+            font-weight: 600;
+            transition: color 0.2s;
+        }
+        .nav-link:hover { color: #FFFFFF; }
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        /* Buttons */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 9px;
+            padding: 13px 22px;
+            border-radius: 12px;
+            font-size: 15px;
+            font-weight: 700;
+            transition: all 0.2s ease;
+            cursor: pointer;
+            border: none;
+            white-space: nowrap;
+        }
+        .btn-amber {
+            background: var(--brand-amber);
+            color: var(--brand-dark);
+            box-shadow: 0 4px 18px rgba(245, 158, 11, 0.32);
+        }
+        .btn-amber:hover {
+            background: #FBBF24;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(245, 158, 11, 0.42);
+        }
+        .btn-ghost-light {
+            background: rgba(255, 255, 255, 0.08);
+            color: #FFFFFF;
+            border: 1px solid rgba(255, 255, 255, 0.16);
+        }
+        .btn-ghost-light:hover {
+            background: rgba(255, 255, 255, 0.16);
+            color: #FFFFFF;
+        }
+        .btn-whatsapp {
+            background: #25D366;
+            color: #FFFFFF;
+            box-shadow: 0 4px 16px rgba(37, 211, 102, 0.28);
+        }
+        .btn-whatsapp:hover {
+            background: #20BD5A;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(37, 211, 102, 0.38);
+        }
+        .btn-outline-dark {
+            background: transparent;
+            color: var(--brand-dark);
+            border: 1.5px solid var(--border-light);
+        }
+        .btn-outline-dark:hover {
+            background: #F1F5F9;
+            border-color: #CBD5E1;
+        }
+
+        /* Hero Section */
+        .hero-section {
+            background: radial-gradient(1100px 600px at 80% 10%, rgba(20, 184, 166, 0.22), transparent 70%),
+                        linear-gradient(180deg, var(--brand-dark) 0%, #0E2F37 100%);
+            color: #FFFFFF;
+            padding: 72px 0 96px;
+            overflow: hidden;
+            position: relative;
+        }
+        .hero-layout {
+            display: grid;
+            grid-template-columns: 1.15fr 0.85fr;
+            gap: 48px;
+            align-items: center;
+        }
+        .pill-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 6px 14px;
+            background: rgba(94, 234, 212, 0.12);
+            border: 1px solid rgba(94, 234, 212, 0.3);
+            color: var(--brand-mint);
+            border-radius: 999px;
+            font-size: 13.5px;
+            font-weight: 700;
+            margin-bottom: 22px;
+        }
+        h1.hero-title {
+            font-size: clamp(34px, 4.4vw, 54px);
+            font-weight: 800;
+            line-height: 1.12;
+            letter-spacing: -1.2px;
+            margin-bottom: 20px;
+        }
+        h1.hero-title span {
+            color: var(--brand-mint);
+        }
+        p.hero-lead {
+            font-size: 17.5px;
+            color: #CBD5E1;
+            line-height: 1.65;
+            max-width: 540px;
+            margin-bottom: 32px;
+        }
+        .hero-ctas {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 14px;
+            margin-bottom: 24px;
+        }
+        .hero-meta-points {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            font-size: 13.5px;
+            color: #94A3B8;
+            flex-wrap: wrap;
+        }
+        .hero-meta-item {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .hero-meta-item svg { color: var(--brand-mint); }
+
+        /* Smartphone App Mockup */
+        .mockup-container {
+            position: relative;
+            display: flex;
+            justify-content: center;
+        }
+        .mockup-glow {
+            position: absolute;
+            inset: 10% 10%;
+            background: radial-gradient(circle, rgba(94, 234, 212, 0.35) 0%, transparent 70%);
+            filter: blur(40px);
+            z-index: 1;
+        }
+        .phone-shell {
+            position: relative;
+            z-index: 2;
+            width: 330px;
+            background: #1E293B;
+            border-radius: 46px;
+            padding: 10px;
+            box-shadow: 0 0 0 1.5px rgba(255, 255, 255, 0.15) inset,
+                        0 30px 70px -10px rgba(0, 0, 0, 0.6),
+                        0 12px 24px rgba(0, 0, 0, 0.3);
+        }
+        .phone-screen {
+            background: #F8FAFC;
+            border-radius: 38px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            color: var(--text-dark);
+            min-height: 590px;
+            font-size: 13px;
+        }
+        .phone-notch {
+            position: absolute;
+            top: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 86px;
+            height: 22px;
+            background: #0F172A;
+            border-radius: 12px;
+            z-index: 5;
+        }
+        .app-status-bar {
+            height: 42px;
+            background: #0D3A42;
+            color: #E2E8F0;
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-between;
+            padding: 0 22px 6px;
+            font-size: 11px;
+            font-weight: 700;
+        }
+        .app-header-view {
+            background: linear-gradient(180deg, #0D3A42 0%, #0F766E 100%);
+            color: #FFFFFF;
+            padding: 8px 18px 52px;
+            border-radius: 0 0 24px 24px;
+        }
+        .app-header-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .app-kiosk-name {
+            font-size: 16px;
+            font-weight: 800;
+            letter-spacing: -0.2px;
+        }
+        .offline-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            font-size: 11px;
+            font-weight: 700;
+            background: rgba(255, 255, 255, 0.16);
+            padding: 4px 8px;
+            border-radius: 999px;
+        }
+        .app-balance-card {
+            background: #FFFFFF;
+            border: 1px solid var(--border-light);
+            border-radius: 18px;
+            margin: -40px 14px 0;
+            padding: 16px;
+            box-shadow: 0 10px 24px rgba(15, 23, 42, 0.08);
+            position: relative;
+            z-index: 3;
+        }
+        .app-balance-title {
+            font-size: 11.5px;
+            color: var(--text-muted);
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .app-balance-val {
             font-size: 26px;
+            font-weight: 800;
+            color: var(--text-dark);
+            font-family: 'JetBrains Mono', monospace;
+            margin: 2px 0 10px;
+        }
+        .app-mini-stats {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px;
+            border-top: 1px solid #F1F5F9;
+            padding-top: 10px;
+        }
+        .mini-stat-box {
+            background: #F8FAFC;
+            border-radius: 10px;
+            padding: 8px 10px;
+            font-size: 11px;
+            color: var(--text-muted);
+        }
+        .mini-stat-box b {
+            display: block;
+            font-size: 13px;
+            font-family: 'JetBrains Mono', monospace;
+            margin-top: 1px;
+        }
+        .mini-stat-box.green b { color: #059669; }
+        .mini-stat-box.orange b { color: #D97706; }
+
+        .app-tx-list {
+            padding: 14px 14px 0;
+            flex: 1;
+        }
+        .app-tx-header {
+            display: flex;
+            justify-content: space-between;
+            font-size: 12px;
+            font-weight: 700;
+            color: var(--text-muted);
+            margin-bottom: 8px;
+        }
+        .tx-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: #FFFFFF;
+            border: 1px solid var(--border-light);
+            border-radius: 12px;
+            padding: 9px 11px;
+            margin-bottom: 7px;
+        }
+        .tx-icon-pill {
+            width: 32px;
+            height: 32px;
+            border-radius: 8px;
+            display: grid;
+            place-items: center;
+            font-size: 11px;
+            font-weight: 800;
+            flex-shrink: 0;
+        }
+        .tx-item.mvola .tx-icon-pill { background: #FEF9C3; color: var(--color-mvola-dark); }
+        .tx-item.orange .tx-icon-pill { background: #FFEDD5; color: #C2410C; }
+        .tx-item.airtel .tx-icon-pill { background: #FEE2E2; color: #B91C1C; }
+        .tx-details { flex: 1; min-width: 0; line-height: 1.25; }
+        .tx-details strong { display: block; font-size: 12.5px; color: var(--text-dark); }
+        .tx-details span { font-size: 11px; color: var(--text-muted); }
+        .tx-amount {
+            font-family: 'JetBrains Mono', monospace;
+            font-weight: 700;
+            font-size: 13px;
+            white-space: nowrap;
+        }
+        .tx-amount.pos { color: #059669; }
+        .tx-amount.neg { color: #DC2626; }
+
+        .floating-badge {
+            position: absolute;
+            z-index: 10;
+            display: flex;
+            align-items: center;
+            gap: 9px;
+            background: #FFFFFF;
+            color: var(--text-dark);
+            padding: 11px 16px;
+            border-radius: 14px;
+            box-shadow: 0 16px 36px rgba(0, 0, 0, 0.28);
+            border: 1px solid rgba(255, 255, 255, 0.8);
+            font-size: 13px;
+            font-weight: 700;
+        }
+        .floating-badge.top-left { left: -18px; top: 135px; }
+        .floating-badge.bottom-right { right: -18px; bottom: 120px; }
+        .floating-badge svg { color: var(--brand-teal); }
+
+        /* Operators Ribbon */
+        .operators-strip {
+            background: #FFFFFF;
+            border-bottom: 1px solid var(--border-light);
+            padding: 22px 0;
+        }
+        .operators-grid {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 16px 36px;
+            flex-wrap: wrap;
+        }
+        .operators-lead {
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.6px;
+        }
+        .op-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 8px 18px;
+            border-radius: 999px;
+            font-weight: 700;
+            font-size: 14px;
+            border: 1px solid var(--border-light);
+        }
+        .op-badge.mvola { background: #FFFBEB; border-color: #FDE68A; color: #92400E; }
+        .op-badge.orange { background: #FFF7ED; border-color: #FED7AA; color: #C2410C; }
+        .op-badge.airtel { background: #FEF2F2; border-color: #FECACA; color: #B91C1C; }
+        .op-dot { width: 10px; height: 10px; border-radius: 50%; }
+        .op-badge.mvola .op-dot { background: #EAB308; }
+        .op-badge.orange .op-dot { background: #EA580C; }
+        .op-badge.airtel .op-dot { background: #DC2626; }
+        .op-ussd {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 12.5px;
+            font-weight: 600;
+            background: rgba(0, 0, 0, 0.06);
+            padding: 2px 7px;
+            border-radius: 6px;
+        }
+
+        /* Core Features Section */
+        .section-padding { padding: 92px 0; }
+        .section-header {
+            text-align: center;
+            max-width: 680px;
+            margin: 0 auto 56px;
+        }
+        .section-tag {
+            color: var(--brand-teal);
+            font-weight: 800;
+            font-size: 13.5px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
             margin-bottom: 10px;
             display: block;
         }
-        .feature-title {
-            font-size: 15px;
-            font-weight: 700;
-            color: var(--primary);
-            margin-bottom: 4px;
+        .section-title {
+            font-size: clamp(28px, 3.5vw, 42px);
+            font-weight: 800;
+            color: var(--text-dark);
+            line-height: 1.18;
+            letter-spacing: -0.8px;
+            margin-bottom: 16px;
         }
-        .feature-desc {
-            font-size: 13px;
-            color: var(--text-secondary);
-            line-height: 1.5;
-        }
-        .operator-logos {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 16px;
-            margin-top: 30px;
-            padding-top: 24px;
-            border-top: 1px solid var(--border);
-        }
-        .op-chip {
-            padding: 6px 14px;
-            border-radius: 8px;
-            font-size: 13px;
-            font-weight: 700;
-        }
-        .op-telma { background: #FEF9C3; color: #854D0E; }
-        .op-orange { background: #FFEDD5; color: #9A3412; }
-        .op-airtel { background: #FEE2E2; color: #991B1B; }
-        footer {
-            text-align: center;
-            padding: 24px;
-            font-size: 13px;
+        .section-desc {
+            font-size: 17px;
             color: var(--text-muted);
-            border-top: 1px solid var(--border);
-            background: var(--surface);
+            line-height: 1.6;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+        .feature-card {
+            background: var(--surface-white);
+            border: 1px solid var(--border-light);
+            border-radius: var(--radius-md);
+            padding: 32px 28px;
+            box-shadow: var(--shadow-subtle);
+            transition: all 0.25s ease;
+        }
+        .feature-card:hover {
+            border-color: var(--brand-teal);
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-card);
+        }
+        .feature-icon-wrap {
+            width: 52px;
+            height: 52px;
+            border-radius: 14px;
+            background: #E6FFFA;
+            color: var(--brand-teal);
+            display: grid;
+            place-items: center;
+            margin-bottom: 22px;
+        }
+        .feature-card h3 {
+            font-size: 19px;
+            font-weight: 800;
+            color: var(--text-dark);
+            margin-bottom: 10px;
+            letter-spacing: -0.3px;
+        }
+        .feature-card p {
+            font-size: 15px;
+            color: var(--text-muted);
+            line-height: 1.6;
+        }
+
+        /* Value Highlight Section (Pain Points solved) */
+        .pain-points-section {
+            background: #0B252A;
+            color: #FFFFFF;
+            border-radius: 28px;
+            padding: 64px 48px;
+            margin: 32px 0;
+        }
+        .pain-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: center;
+        }
+        .pain-title {
+            font-size: 32px;
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 16px;
+        }
+        .comparison-table {
+            display: grid;
+            gap: 14px;
+        }
+        .comp-row {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 14px;
+            padding: 16px 20px;
+            display: flex;
+            align-items: flex-start;
+            gap: 14px;
+        }
+        .comp-icon {
+            border-radius: 50%;
+            padding: 4px;
+            display: grid;
+            place-items: center;
+            flex-shrink: 0;
+        }
+        .comp-row.bad .comp-icon { background: rgba(239, 68, 68, 0.2); color: #F87171; }
+        .comp-row.good .comp-icon { background: rgba(16, 185, 129, 0.2); color: #34D399; }
+        .comp-text strong { display: block; font-size: 15px; margin-bottom: 2px; }
+        .comp-text p { font-size: 13.5px; color: #94A3B8; }
+
+        /* Installation Guide Steps */
+        .steps-container {
+            background: #FFFFFF;
+            border: 1px solid var(--border-light);
+            border-radius: var(--radius-lg);
+            padding: 56px 48px;
+            box-shadow: var(--shadow-subtle);
+        }
+        .steps-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 32px;
+            position: relative;
+        }
+        .step-col {
+            position: relative;
+        }
+        .step-number {
+            width: 44px;
+            height: 44px;
+            border-radius: 12px;
+            background: var(--brand-dark);
+            color: var(--brand-mint);
+            font-size: 18px;
+            font-weight: 800;
+            display: grid;
+            place-items: center;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 12px rgba(10, 34, 40, 0.2);
+        }
+        .step-col h3 {
+            font-size: 18px;
+            font-weight: 800;
+            color: var(--text-dark);
+            margin-bottom: 10px;
+        }
+        .step-col p {
+            font-size: 14.5px;
+            color: var(--text-muted);
+            line-height: 1.6;
+        }
+        .callout-android-tip {
+            margin-top: 36px;
+            background: #F0FDF4;
+            border: 1px solid #BBF7D0;
+            border-radius: 14px;
+            padding: 18px 22px;
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            color: #166534;
+            font-size: 14.5px;
+        }
+        .callout-android-tip svg { color: #15803D; }
+
+        /* Pricing & Licenses Section */
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 28px;
+            max-width: 860px;
+            margin: 0 auto;
+        }
+        .pricing-card {
+            background: #FFFFFF;
+            border: 1.5px solid var(--border-light);
+            border-radius: var(--radius-lg);
+            padding: 40px 32px;
+            display: flex;
+            flex-direction: column;
+            box-shadow: var(--shadow-subtle);
+            position: relative;
+        }
+        .pricing-card.featured {
+            border-color: var(--brand-teal);
+            box-shadow: 0 16px 36px -4px rgba(15, 118, 110, 0.14);
+        }
+        .pricing-featured-badge {
+            position: absolute;
+            top: -14px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--brand-teal);
+            color: #FFFFFF;
+            padding: 4px 16px;
+            border-radius: 999px;
+            font-size: 12.5px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .pricing-plan-name {
+            font-size: 20px;
+            font-weight: 800;
+            color: var(--text-dark);
+            margin-bottom: 6px;
+        }
+        .pricing-plan-desc {
+            font-size: 14px;
+            color: var(--text-muted);
+            margin-bottom: 24px;
+        }
+        .pricing-price-tag {
+            font-size: 38px;
+            font-weight: 800;
+            color: var(--text-dark);
+            margin-bottom: 24px;
+            display: flex;
+            align-items: baseline;
+            gap: 6px;
+        }
+        .pricing-price-tag small {
+            font-size: 15px;
+            font-weight: 600;
+            color: var(--text-muted);
+        }
+        .pricing-features-list {
+            list-style: none;
+            display: grid;
+            gap: 12px;
+            margin-bottom: 32px;
+            flex: 1;
+        }
+        .pricing-features-list li {
+            font-size: 14.5px;
+            color: var(--text-dark);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .pricing-features-list li svg { color: #059669; }
+
+        /* Accordion FAQ */
+        .faq-container {
+            max-width: 760px;
+            margin: 0 auto;
+            display: grid;
+            gap: 14px;
+        }
+        .faq-item {
+            background: #FFFFFF;
+            border: 1px solid var(--border-light);
+            border-radius: 14px;
+            overflow: hidden;
+            transition: border-color 0.2s;
+        }
+        .faq-item:hover { border-color: #CBD5E1; }
+        .faq-question {
+            width: 100%;
+            text-align: left;
+            padding: 20px 24px;
+            background: none;
+            border: none;
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--text-dark);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+        }
+        .faq-answer {
+            padding: 0 24px 20px;
+            font-size: 14.5px;
+            color: var(--text-muted);
+            line-height: 1.6;
+            display: none;
+        }
+        .faq-item.active .faq-answer { display: block; }
+        .faq-item.active .faq-question svg { transform: rotate(180deg); }
+
+        /* Final High-Conversion CTA */
+        .final-cta-section {
+            background: linear-gradient(135deg, var(--brand-dark) 0%, #0F3A42 100%);
+            color: #FFFFFF;
+            border-radius: 28px;
+            padding: 64px 40px;
+            text-align: center;
+            margin-bottom: 64px;
+            box-shadow: var(--shadow-elevated);
+        }
+        .final-cta-section h2 {
+            font-size: clamp(28px, 3.8vw, 42px);
+            font-weight: 800;
+            letter-spacing: -0.8px;
+            margin-bottom: 16px;
+        }
+        .final-cta-section p {
+            font-size: 17px;
+            color: #CBD5E1;
+            max-width: 580px;
+            margin: 0 auto 32px;
+        }
+        .final-buttons-row {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 14px;
+        }
+
+        /* Footer */
+        footer {
+            background: #FFFFFF;
+            border-top: 1px solid var(--border-light);
+            padding: 44px 0 28px;
+            font-size: 13.5px;
+            color: var(--text-muted);
+        }
+        .footer-grid {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 24px;
+            margin-bottom: 24px;
+        }
+        .legal-notice {
+            font-size: 12px;
+            color: var(--text-subtle);
+            line-height: 1.5;
+            border-top: 1px solid #F1F5F9;
+            padding-top: 18px;
+        }
+
+        /* Responsive Breakpoints */
+        @media (max-width: 992px) {
+            .hero-layout { grid-template-columns: 1fr; text-align: center; gap: 56px; }
+            p.hero-lead { margin-inline: auto; }
+            .hero-ctas, .hero-meta-points { justify-content: center; }
+            .features-grid { grid-template-columns: 1fr; }
+            .pain-grid { grid-template-columns: 1fr; }
+            .steps-grid { grid-template-columns: 1fr; }
+            .pricing-grid { grid-template-columns: 1fr; }
+        }
+        @media (max-width: 640px) {
+            .container { padding: 0 16px; }
+            .nav-menu { display: none; }
+            .hero-section { padding: 48px 0 72px; }
+            .phone-shell { width: 300px; }
+            .phone-screen { min-height: 540px; }
+            .floating-badge { display: none; }
+            .btn { width: 100%; }
+            .pain-points-section { padding: 40px 20px; }
+            .steps-container { padding: 36px 20px; }
         }
     </style>
 </head>
 <body>
+
+    <!-- SVG Icon Sprite -->
+    <svg width="0" height="0" style="position:absolute; display:none;" aria-hidden="true">
+        <symbol id="icon-bolt" viewBox="0 0 24 24"><path d="M13 2 4 14h7l-1 8 9-12h-7z"/></symbol>
+        <symbol id="icon-download" viewBox="0 0 24 24"><path d="M12 3v12m0 0-4-4m4 4 4-4M4 20h16"/></symbol>
+        <symbol id="icon-whatsapp" viewBox="0 0 24 24"><path d="M3 21l1.65-3.8a9 9 0 1 1 3.4 2.9L3 21"/><path d="M9 10a.5.5 0 0 0 1 0V9a.5.5 0 0 0-1 0v1a5 5 0 0 0 5 5h1a.5.5 0 0 0 0-1h-1a.5.5 0 0 0 0 1"/></symbol>
+        <symbol id="icon-key" viewBox="0 0 24 24"><circle cx="8" cy="15" r="4"/><path d="m11 12 9-9m-3 3 3 3m-6-3 2 2"/></symbol>
+        <symbol id="icon-check" viewBox="0 0 24 24"><path d="m5 12 5 5L20 7"/></symbol>
+        <symbol id="icon-x" viewBox="0 0 24 24"><path d="M18 6 6 18M6 6l12 12"/></symbol>
+        <symbol id="icon-shield" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></symbol>
+        <symbol id="icon-sms" viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></symbol>
+        <symbol id="icon-calculator" viewBox="0 0 24 24"><rect width="16" height="20" x="4" y="2" rx="2"/><line x1="8" x2="16" y1="6" y2="6"/><line x1="16" x2="16" y1="14" y2="18"/><path d="M16 10h.01M12 10h.01M8 10h.01M12 14h.01M8 14h.01M12 18h.01M8 18h.01"/></symbol>
+        <symbol id="icon-sim" viewBox="0 0 24 24"><path d="M6 2h8l6 6v14H6a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2z"/><path d="M10 10v4M14 10v4M10 18v.01M14 18v.01"/></symbol>
+        <symbol id="icon-chevron" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></symbol>
+        <symbol id="icon-wifi-off" viewBox="0 0 24 24"><line x1="1" x2="23" y1="1" y2="23"/><path d="M16.72 11.06A10.94 10.94 0 0 1 19 12.55"/><path d="M5 12.55a10.94 10.94 0 0 1 5.17-2.39"/><path d="M10.71 5.05A16 16 0 0 1 22.58 9"/><path d="M1.42 9a15.91 15.91 0 0 1 4.7-2.88"/><path d="M8.53 16.11a6 6 0 0 1 6.95 0"/><line x1="12" x2="12.01" y1="20" y2="20"/></symbol>
+    </svg>
+
+    <!-- Top Announcement -->
+    <div class="top-banner">
+        <span>⚡ <strong>Version Officielle 1.1.0 disponible</strong> : Signature certifiée et support des dernières syntaxes USSD 2026.</span>
+        <a href="#telecharger">Télécharger gratuitement</a>
+    </div>
+
+    <!-- Navigation Header -->
     <header>
-        <a href="#" class="brand">
-            <div class="brand-icon">⚡</div>
-            <span>CashFlow Pro</span>
-        </a>
-        <a href="activate/" class="btn btn-activate" style="padding: 8px 16px; font-size: 14px;">Activation Clé</a>
+        <div class="container navbar">
+            <a href="#" class="brand-logo" aria-label="CashFlow Pro Madagascar">
+                <div class="brand-icon-box">
+                    <svg class="icon"><use href="#icon-bolt"/></svg>
+                </div>
+                <span>CashFlow Pro</span>
+            </a>
+
+            <nav class="nav-menu" aria-label="Navigation principale">
+                <a href="#avantages" class="nav-link">Avantages</a>
+                <a href="#installation" class="nav-link">Installation</a>
+                <a href="#tarifs" class="nav-link">Tarifs</a>
+                <a href="#faq" class="nav-link">FAQ</a>
+            </nav>
+
+            <div class="nav-actions">
+                <a href="activate/" class="btn btn-ghost-light" style="padding: 10px 16px; font-size: 14px;">
+                    <svg class="icon"><use href="#icon-key"/></svg>
+                    <span>Activer ma clé</span>
+                </a>
+                <a href="https://wa.me/261340000000?text=Bonjour%20Support%20CashFlow%20Pro,%20je%20souhaite%20obtenir%20des%20informations%20sur%20l'application" class="btn btn-whatsapp" style="padding: 10px 16px; font-size: 14px;" target="_blank" rel="noopener">
+                    <svg class="icon"><use href="#icon-whatsapp"/></svg>
+                    <span>WhatsApp</span>
+                </a>
+            </div>
+        </div>
     </header>
 
-    <main>
-        <div class="hero-card">
-            <div class="badge">
-                <span>✓</span> Version Officielle 1.1.0 • Certifiée Production
-            </div>
-            <h1>La caisse Mobile Money ultra-rapide pour Kiosques</h1>
-            <p class="subtitle">
-                Automatisez vos opérations MVola, Orange Money et Airtel Money à Madagascar. Interception SMS temps réel, exécution USSD silencieuse et sécurité hors-ligne garantie.
-            </p>
-
-            <div class="cta-container">
-                <a href="CashFlowPro.apk" class="btn btn-download" download>
-                    <span>📥</span> Télécharger l'Application (APK)
-                </a>
-                <div class="apk-meta">Taille : ~14 Mo • Android 7.0 et supérieur • Signature Officielle</div>
-                <a href="activate/" class="btn btn-activate">
-                    <span>🔑</span> Activer une Licence
-                </a>
-            </div>
-
-            <div class="operator-logos">
-                <span class="op-chip op-telma">MVola (*150#)</span>
-                <span class="op-chip op-orange">Orange Money (#144#)</span>
-                <span class="op-chip op-airtel">Airtel Money (*436#)</span>
-            </div>
-
-            <div class="features-grid">
-                <div class="feature-box">
-                    <span class="feature-icon">📩</span>
-                    <div class="feature-title">Détection SMS 100% Auto</div>
-                    <div class="feature-desc">Enregistrement instantané des dépôts, retraits et commissions sans aucune saisie manuelle.</div>
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="container hero-layout">
+            <div>
+                <div class="pill-badge">
+                    <svg class="icon" style="width: 1rem; height: 1rem;"><use href="#icon-shield"/></svg>
+                    <span>Édition Professionnelle pour Kiosques Madagascar</span>
                 </div>
-                <div class="feature-box">
-                    <span class="feature-icon">⚡</span>
-                    <div class="feature-title">Automatisation USSD Dual SIM</div>
-                    <div class="feature-desc">Sélection intelligente de la bonne carte SIM et masquage des menus système.</div>
+                <h1 class="hero-title">La caisse automatique des <span>Kiosques Mobile Money</span>.</h1>
+                <p class="hero-lead">
+                    Enregistrez chaque dépôt, retrait et commission en temps réel sans jamais recopier sur un cahier. Vos soldes <strong>MVola</strong>, <strong>Orange Money</strong> et <strong>Airtel Money</strong> sont toujours justes, même sans connexion Internet.
+                </p>
+
+                <div class="hero-ctas">
+                    <a href="CashFlowPro.apk" class="btn btn-amber" download id="telecharger">
+                        <svg class="icon"><use href="#icon-download"/></svg>
+                        <span>Télécharger l'APK (Gratuit)</span>
+                    </a>
+                    <a href="activate/" class="btn btn-ghost-light">
+                        <svg class="icon"><use href="#icon-key"/></svg>
+                        <span>Activer une licence</span>
+                    </a>
                 </div>
-                <div class="feature-box">
-                    <span class="feature-icon">🛡️</span>
-                    <div class="feature-title">100% Hors-Ligne & Sécurisé</div>
-                    <div class="feature-desc">Vos données financières restent exclusivement sur votre appareil avec chiffrement militaire.</div>
+
+                <div class="hero-meta-points">
+                    <div class="hero-meta-item">
+                        <svg class="icon"><use href="#icon-check"/></svg>
+                        <span>Android 7.0 à 15</span>
+                    </div>
+                    <div class="hero-meta-item">
+                        <svg class="icon"><use href="#icon-check"/></svg>
+                        <span>Compatible Dual-SIM</span>
+                    </div>
+                    <div class="hero-meta-item">
+                        <svg class="icon"><use href="#icon-check"/></svg>
+                        <span>100% Hors-Ligne</span>
+                    </div>
+                    <div class="hero-meta-item">
+                        <svg class="icon"><use href="#icon-check"/></svg>
+                        <span>Taille : ~13.5 Mo</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Smartphone Mockup Preview -->
+            <div class="mockup-container" aria-hidden="true">
+                <div class="mockup-glow"></div>
+                <div class="phone-shell">
+                    <div class="phone-screen">
+                        <div class="phone-notch"></div>
+                        <div class="app-status-bar">
+                            <span>09:41</span>
+                            <span>SIM 1 &bull; SIM 2</span>
+                        </div>
+                        <div class="app-header-view">
+                            <div class="app-header-row">
+                                <div>
+                                    <div style="font-size: 11px; opacity: 0.85;">Point de Vente</div>
+                                    <div class="app-kiosk-name">Kiosque Analakely</div>
+                                </div>
+                                <div class="offline-tag">
+                                    <svg class="icon" style="width: 12px; height: 12px;"><use href="#icon-wifi-off"/></svg>
+                                    <span>Hors-ligne</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Card Solde -->
+                        <div class="app-balance-card">
+                            <div class="app-balance-title">Solde Global Caisse (Espèces + Virtuel)</div>
+                            <div class="app-balance-val">1 248 500 Ar</div>
+                            <div class="app-mini-stats">
+                                <div class="mini-stat-box green">
+                                    <span>Entrées du jour</span>
+                                    <b>+180 000 Ar</b>
+                                </div>
+                                <div class="mini-stat-box orange">
+                                    <span>Commissions nettes</span>
+                                    <b>+14 850 Ar</b>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Liste Dernières Opérations -->
+                        <div class="app-tx-list">
+                            <div class="app-tx-header">
+                                <span>Flux en direct</span>
+                                <span style="color: var(--brand-teal); font-weight: 700;">Journalisé</span>
+                            </div>
+                            <div class="tx-item mvola">
+                                <div class="tx-icon-pill">MV</div>
+                                <div class="tx-details">
+                                    <strong>Dépôt Client</strong>
+                                    <span>034 56 789 01 &bull; Réf: 98124</span>
+                                </div>
+                                <div class="tx-amount pos">+50 000 Ar</div>
+                            </div>
+                            <div class="tx-item orange">
+                                <div class="tx-icon-pill">OM</div>
+                                <div class="tx-details">
+                                    <strong>Retrait Espèces</strong>
+                                    <span>032 14 567 89 &bull; Réf: 44210</span>
+                                </div>
+                                <div class="tx-amount neg">-120 000 Ar</div>
+                            </div>
+                            <div class="tx-item airtel">
+                                <div class="tx-icon-pill">AM</div>
+                                <div class="tx-details">
+                                    <strong>Bonus Commission</strong>
+                                    <span>Airtel Money &bull; Automatique</span>
+                                </div>
+                                <div class="tx-amount pos">+1 200 Ar</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Floating Badges -->
+                <div class="floating-badge top-left">
+                    <svg class="icon"><use href="#icon-sms"/></svg>
+                    <span>SMS opérateur capté à la seconde</span>
+                </div>
+                <div class="floating-badge bottom-right">
+                    <svg class="icon"><use href="#icon-shield"/></svg>
+                    <span>Écart de caisse = 0 Ariary</span>
                 </div>
             </div>
         </div>
-    </main>
+    </section>
 
+    <!-- Operators Ribbon -->
+    <div class="operators-strip">
+        <div class="container operators-grid">
+            <span class="operators-lead">Moteurs intégrés :</span>
+            <div class="op-badge mvola">
+                <span class="op-dot"></span>
+                <span>Telma / MVola</span>
+                <span class="op-ussd">*150#</span>
+            </div>
+            <div class="op-badge orange">
+                <span class="op-dot"></span>
+                <span>Orange Money</span>
+                <span class="op-ussd">#144#</span>
+            </div>
+            <div class="op-badge airtel">
+                <span class="op-dot"></span>
+                <span>Airtel Money</span>
+                <span class="op-ussd">*436#</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Core Features -->
+    <section class="section-padding" id="avantages">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Conçu pour le terrain</span>
+                <h2 class="section-title">Tout ce qu'il vous faut pour gérer votre caisse sans stress.</h2>
+                <p class="section-desc">Fini les erreurs de calculatrice et les oublis d'inscription sur le cahier le soir après une journée chargée.</p>
+            </div>
+
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon-wrap">
+                        <svg class="icon" style="width: 26px; height: 26px;"><use href="#icon-sms"/></svg>
+                    </div>
+                    <h3>Détection SMS automatique</h3>
+                    <p>Chaque message officiel de confirmation (MVola 411, Orange Money, Airtel Money) est analysé instantanément. Le montant, les frais et la référence s'inscrivent seuls dans la caisse.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon-wrap">
+                        <svg class="icon" style="width: 26px; height: 26px;"><use href="#icon-sim"/></svg>
+                    </div>
+                    <h3>Automatisation USSD Dual-SIM</h3>
+                    <p>Effectuez vos dépôts et transferts d'un geste. CashFlow Pro sélectionne la bonne carte SIM (SIM 1 ou SIM 2) et masque les menus opérateur pour un confort total.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon-wrap">
+                        <svg class="icon" style="width: 26px; height: 26px;"><use href="#icon-calculator"/></svg>
+                    </div>
+                    <h3>Clôture de Caisse en 1 Clic</h3>
+                    <p>En fin de journée, visualisez d'un coup d'œil le total des espèces en main, le solde restant sur chaque puce et le bénéfice net de vos commissions.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon-wrap">
+                        <svg class="icon" style="width: 26px; height: 26px;"><use href="#icon-wifi-off"/></svg>
+                    </div>
+                    <h3>100% Fonctionnel Hors-Ligne</h3>
+                    <p>Aucune connexion Internet ou forfait data requis. L'application s'appuie directement sur les réseaux GSM locaux pour une disponibilité ininterrompue.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon-wrap">
+                        <svg class="icon" style="width: 26px; height: 26px;"><use href="#icon-shield"/></svg>
+                    </div>
+                    <h3>Sécurité & Confidentialité</h3>
+                    <p>Vos chiffres d'affaires et vos historiques restent enfermés dans votre téléphone. L'application ne vous demande et ne conserve <strong>jamais</strong> vos codes PIN secrets.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon-wrap">
+                        <svg class="icon" style="width: 26px; height: 26px;"><use href="#icon-download"/></svg>
+                    </div>
+                    <h3>Sauvegarde Chiffrée Exportable</h3>
+                    <p>Exportez vos données de caisse en un clic vers WhatsApp ou votre carte mémoire. En cas de perte du téléphone, vous restaurez votre historique en 10 secondes.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pain points vs CashFlow Pro -->
+    <div class="container">
+        <div class="pain-points-section">
+            <div class="pain-grid">
+                <div>
+                    <span style="color: var(--brand-mint); font-weight: 700; text-transform: uppercase; font-size: 13px; letter-spacing: 0.5px;">Le saviez-vous ?</span>
+                    <h2 class="pain-title">Un gérant de kiosque perd en moyenne 45 minutes par jour sur son cahier.</h2>
+                    <p style="color: #CBD5E1; font-size: 15.5px; line-height: 1.6;">
+                        Entre les SMS mal relus, les clients pressés et la fatigue du soir, les écarts de caisse coûtent cher. CashFlow Pro supprime les erreurs de saisie à la source.
+                    </p>
+                </div>
+                <div class="comparison-table">
+                    <div class="comp-row bad">
+                        <div class="comp-icon"><svg class="icon"><use href="#icon-x"/></svg></div>
+                        <div class="comp-text">
+                            <strong>Gestion traditionnelle sur cahier</strong>
+                            <p>Risque de faux SMS, oubli de noter un retrait lors des heures d'affluence, calculs fastidieux le soir.</p>
+                        </div>
+                    </div>
+                    <div class="comp-row good">
+                        <div class="comp-icon"><svg class="icon"><use href="#icon-check"/></svg></div>
+                        <div class="comp-text">
+                            <strong>Avec CashFlow Pro</strong>
+                            <p>Enregistrement automatique au millième de seconde, détection des doublons, calcul des commissions en direct.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Installation Steps (Clear Guide for Non-Tech Users) -->
+    <section class="section-padding" id="installation">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Guide rapide</span>
+                <h2 class="section-title">Comment installer CashFlow Pro en 3 minutes</h2>
+                <p class="section-desc">L'application s'installe directement via son fichier APK officiel, sans passer par un compte étranger.</p>
+            </div>
+
+            <div class="steps-container">
+                <div class="steps-grid">
+                    <div class="step-col">
+                        <div class="step-number">1</div>
+                        <h3>Téléchargez le fichier</h3>
+                        <p>Appuyez sur le bouton <strong>Télécharger l'APK</strong>. Si votre navigateur affiche un avertissement de sécurité standard pour les APK, choisissez <em>« Télécharger quand même »</em>.</p>
+                    </div>
+
+                    <div class="step-col">
+                        <div class="step-number">2</div>
+                        <h3>Autorisez l'installation</h3>
+                        <p>Ouvrez le fichier téléchargé depuis vos notifications ou le dossier Téléchargements. Si Android vous le demande, cochez <em>« Autoriser cette source »</em> dans les paramètres.</p>
+                    </div>
+
+                    <div class="step-col">
+                        <div class="step-number">3</div>
+                        <h3>Ouvrez & Encaissez</h3>
+                        <p>Lancez l'application, accordez l'accès aux SMS pour la lecture automatique, puis commencez immédiatement à enregistrer vos opérations.</p>
+                    </div>
+                </div>
+
+                <div class="callout-android-tip">
+                    <svg class="icon"><use href="#icon-shield"/></svg>
+                    <div>
+                        <strong>Avertissement officiel Android :</strong> Notre APK est signé numériquement avec une clé de production officielle vérifiable. Il ne contient aucune publicité ni traceur tiers.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing / License Model -->
+    <section class="section-padding" id="tarifs" style="background: #F1F5F9;">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Transparence</span>
+                <h2 class="section-title">Une offre claire, sans abonnement caché.</h2>
+                <p class="section-desc">Testez librement sur votre téléphone de caisse avant de choisir votre formule.</p>
+            </div>
+
+            <div class="pricing-grid">
+                <!-- Plan Essai -->
+                <div class="pricing-card">
+                    <div class="pricing-plan-name">Essai Découverte</div>
+                    <div class="pricing-plan-desc">Pour tester dans votre kiosque en conditions réelles.</div>
+                    <div class="pricing-price-tag">
+                        0 Ar <small>/ 5 jours</small>
+                    </div>
+                    <ul class="pricing-features-list">
+                        <li><svg class="icon"><use href="#icon-check"/></svg> Accès complet à toutes les fonctionnalités</li>
+                        <li><svg class="icon"><use href="#icon-check"/></svg> Détection SMS MVola, Orange, Airtel</li>
+                        <li><svg class="icon"><use href="#icon-check"/></svg> Automatisation USSD Dual-SIM</li>
+                        <li><svg class="icon"><use href="#icon-check"/></svg> Sans engagement de paiement</li>
+                    </ul>
+                    <a href="CashFlowPro.apk" class="btn btn-outline-dark" download>
+                        <span>Télécharger et Essayer</span>
+                    </a>
+                </div>
+
+                <!-- Plan Définitif -->
+                <div class="pricing-card featured">
+                    <div class="pricing-featured-badge">Recommandé pour Kiosques</div>
+                    <div class="pricing-plan-name">Licence Définitive</div>
+                    <div class="pricing-plan-desc">Activation permanente liée à votre smartphone professionnel.</div>
+                    <div class="pricing-price-tag">
+                        À vie <small>/ Paiement unique</small>
+                    </div>
+                    <ul class="pricing-features-list">
+                        <li><svg class="icon"><use href="#icon-check"/></svg> <strong>Utilisation illimitée sans expiration</strong></li>
+                        <li><svg class="icon"><use href="#icon-check"/></svg> Zéro abonnement mensuel</li>
+                        <li><svg class="icon"><use href="#icon-check"/></svg> Mises à jour des codes USSD incluses</li>
+                        <li><svg class="icon"><use href="#icon-check"/></svg> Sauvegarde et restauration illimitées</li>
+                        <li><svg class="icon"><use href="#icon-check"/></svg> Assistance technique prioritaire WhatsApp</li>
+                    </ul>
+                    <a href="https://wa.me/261340000000?text=Bonjour,%20je%20souhaite%20commander%20une%20licence%20d%C3%A9finitive%20CashFlow%20Pro" class="btn btn-amber" target="_blank" rel="noopener">
+                        <svg class="icon"><use href="#icon-whatsapp"/></svg>
+                        <span>Commander sur WhatsApp</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Accordion -->
+    <section class="section-padding" id="faq">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Questions fréquentes</span>
+                <h2 class="section-title">Tout ce que vous devez savoir.</h2>
+                <p class="section-desc">Des réponses concrètes aux interrogations courantes des professionnels.</p>
+            </div>
+
+            <div class="faq-container">
+                <div class="faq-item active">
+                    <button class="faq-question" type="button">
+                        <span>L'application nécessite-t-elle une connexion Internet ?</span>
+                        <svg class="icon"><use href="#icon-chevron"/></svg>
+                    </button>
+                    <div class="faq-answer">
+                        Non. CashFlow Pro a été spécialement développée pour fonctionner à 100 % hors ligne. Toutes les opérations de caisse, les réconciliations de SMS et les calculs de commissions s'exécutent en local sur votre appareil Android sans consommer aucun mégaoctet de données.
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question" type="button">
+                        <span>Mes codes secrets Mobile Money sont-ils en sécurité ?</span>
+                        <svg class="icon"><use href="#icon-chevron"/></svg>
+                    </button>
+                    <div class="faq-answer">
+                        Oui, en toute sécurité. L'application ne vous demande jamais votre code PIN secret de transfert et ne le stocke à aucun moment. Lors des opérations USSD, la boîte de dialogue standard de saisie sécurisée du code opérateur s'affiche pour que vous gardiez le contrôle exclusif de la validation.
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question" type="button">
+                        <span>Que se passe-t-il si je change de smartphone ou perds mon appareil ?</span>
+                        <svg class="icon"><use href="#icon-chevron"/></svg>
+                    </button>
+                    <div class="faq-answer">
+                        Vous pouvez à tout moment exporter une sauvegarde chiffrée de votre historique (fichier .cfbak) protégée par votre propre mot de passe. En contactant notre service client WhatsApp avec votre justificatif d'achat, votre clé de licence pourra être transférée sur votre nouveau terminal.
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question" type="button">
+                        <span>Comment activer ma licence une fois achetée ?</span>
+                        <svg class="icon"><use href="#icon-chevron"/></svg>
+                    </button>
+                    <div class="faq-answer">
+                        C'est instantané : lorsque vous recevez votre clé par message WhatsApp, il vous suffit de cliquer sur le lien d'activation fourni ou de copier la clé. L'application CashFlow Pro la détecte automatiquement dès son ouverture et débloque votre compte sans aucune manipulation compliquée.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Final CTA -->
+    <div class="container">
+        <section class="final-cta-section">
+            <h2>Équipez votre point de vente dès aujourd'hui</h2>
+            <p>Téléchargez CashFlow Pro, démarrez votre essai de 5 jours et constatez la différence dès ce soir à la fermeture de votre caisse.</p>
+            <div class="final-buttons-row">
+                <a href="CashFlowPro.apk" class="btn btn-amber" download>
+                    <svg class="icon"><use href="#icon-download"/></svg>
+                    <span>Télécharger CashFlowPro.apk</span>
+                </a>
+                <a href="https://wa.me/261340000000?text=Bonjour,%20je%20souhaite%20un%20renseignement%20sur%20CashFlow%20Pro" class="btn btn-whatsapp" target="_blank" rel="noopener">
+                    <svg class="icon"><use href="#icon-whatsapp"/></svg>
+                    <span>Parler à un conseiller WhatsApp</span>
+                </a>
+            </div>
+        </section>
+    </div>
+
+    <!-- Footer -->
     <footer>
-        <p>&copy; 2026 CashFlow Pro Madagascar. Tous droits réservés.</p>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="brand-logo" style="color: var(--brand-dark);">
+                    <div class="brand-icon-box" style="width: 32px; height: 32px;">
+                        <svg class="icon" style="width: 16px; height: 16px;"><use href="#icon-bolt"/></svg>
+                    </div>
+                    <span>CashFlow Pro</span>
+                </div>
+
+                <div style="display: flex; gap: 20px; flex-wrap: wrap;">
+                    <a href="#avantages" style="color: var(--text-dark); font-weight: 600;">Avantages</a>
+                    <a href="#installation" style="color: var(--text-dark); font-weight: 600;">Installation</a>
+                    <a href="#tarifs" style="color: var(--text-dark); font-weight: 600;">Tarifs</a>
+                    <a href="activate/" style="color: var(--text-dark); font-weight: 600;">Activation Clé</a>
+                </div>
+            </div>
+
+            <div class="legal-notice">
+                <p>&copy; 2026 CashFlow Pro Madagascar. Tous droits réservés.</p>
+                <p style="margin-top: 4px;">MVola, Orange Money et Airtel Money sont des marques déposées appartenant respectivement à Telma Madagascar, Orange Madagascar et Airtel Madagascar. CashFlow Pro est un utilitaire indépendant de gestion comptable et d'assistance logicielle pour terminaux Android.</p>
+            </div>
+        </div>
     </footer>
+
+    <!-- Interactive FAQ Script -->
+    <script>
+        document.querySelectorAll('.faq-question').forEach(button => {
+            button.addEventListener('click', () => {
+                const item = button.parentElement;
+                const wasActive = item.classList.contains('active');
+                document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('active'));
+                if (!wasActive) {
+                    item.classList.add('active');
+                }
+            });
+        });
+    </script>
 </body>
 </html>
