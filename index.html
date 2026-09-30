@@ -7,6 +7,11 @@
     <meta name="description" content="Application Android professionnelle pour les gérants de kiosques Mobile Money à Madagascar (MVola, Orange Money, Airtel Money). Rapprochement automatique, lecture des SMS en direct et calcul des commissions sans calculatrice.">
     <meta name="theme-color" content="#0A2228">
     
+    <!-- Cache-Busting & Fraîcheur Immédiate -->
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    
     <!-- Open Graph / Meta Partage -->
     <meta property="og:type" content="website">
     <meta property="og:title" content="CashFlow Pro — La caisse automatique des kiosques Mobile Money">
@@ -279,8 +284,8 @@
         .phone-shell {
             position: relative;
             z-index: 2;
-            width: 330px;
-            background: #1E293B;
+            width: 340px;
+            background: #111827;
             border-radius: 46px;
             padding: 10px;
             box-shadow: 0 0 0 1.5px rgba(255, 255, 255, 0.15) inset,
@@ -294,8 +299,9 @@
             display: flex;
             flex-direction: column;
             color: var(--text-dark);
-            min-height: 590px;
-            font-size: 13px;
+            height: 610px;
+            font-size: 12px;
+            box-shadow: inset 0 0 0 1px rgba(0,0,0,0.05);
         }
         .phone-notch {
             position: absolute;
@@ -304,140 +310,251 @@
             transform: translateX(-50%);
             width: 86px;
             height: 22px;
-            background: #0F172A;
+            background: #111827;
             border-radius: 12px;
-            z-index: 5;
+            z-index: 20;
         }
         .app-status-bar {
-            height: 42px;
-            background: #0D3A42;
-            color: #E2E8F0;
+            height: 38px;
+            background: #FFFFFF;
+            color: #1E293B;
             display: flex;
             align-items: flex-end;
             justify-content: space-between;
-            padding: 0 22px 6px;
+            padding: 0 20px 4px;
             font-size: 11px;
             font-weight: 700;
+            border-bottom: 1px solid #F1F5F9;
         }
-        .app-header-view {
-            background: linear-gradient(180deg, #0D3A42 0%, #0F766E 100%);
-            color: #FFFFFF;
-            padding: 8px 18px 52px;
-            border-radius: 0 0 24px 24px;
-        }
-        .app-header-row {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        .app-kiosk-name {
-            font-size: 16px;
-            font-weight: 800;
-            letter-spacing: -0.2px;
-        }
-        .offline-tag {
-            display: inline-flex;
-            align-items: center;
-            gap: 5px;
-            font-size: 11px;
-            font-weight: 700;
-            background: rgba(255, 255, 255, 0.16);
-            padding: 4px 8px;
-            border-radius: 999px;
-        }
-        .app-balance-card {
+        .app-topbar {
             background: #FFFFFF;
-            border: 1px solid var(--border-light);
-            border-radius: 18px;
-            margin: -40px 14px 0;
-            padding: 16px;
-            box-shadow: 0 10px 24px rgba(15, 23, 42, 0.08);
-            position: relative;
-            z-index: 3;
-        }
-        .app-balance-title {
-            font-size: 11.5px;
-            color: var(--text-muted);
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-        .app-balance-val {
-            font-size: 26px;
-            font-weight: 800;
-            color: var(--text-dark);
-            font-family: 'JetBrains Mono', monospace;
-            margin: 2px 0 10px;
-        }
-        .app-mini-stats {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 8px;
-            border-top: 1px solid #F1F5F9;
-            padding-top: 10px;
-        }
-        .mini-stat-box {
-            background: #F8FAFC;
-            border-radius: 10px;
-            padding: 8px 10px;
-            font-size: 11px;
-            color: var(--text-muted);
-        }
-        .mini-stat-box b {
-            display: block;
-            font-size: 13px;
-            font-family: 'JetBrains Mono', monospace;
-            margin-top: 1px;
-        }
-        .mini-stat-box.green b { color: #059669; }
-        .mini-stat-box.orange b { color: #D97706; }
-
-        .app-tx-list {
-            padding: 14px 14px 0;
-            flex: 1;
-        }
-        .app-tx-header {
+            border-bottom: 1px solid #E2E8F0;
+            padding: 8px 14px;
             display: flex;
+            align-items: center;
             justify-content: space-between;
-            font-size: 12px;
-            font-weight: 700;
-            color: var(--text-muted);
-            margin-bottom: 8px;
         }
-        .tx-item {
+        .app-topbar-title {
+            font-size: 15px;
+            font-weight: 800;
+            color: #111827;
             display: flex;
             align-items: center;
             gap: 10px;
-            background: #FFFFFF;
-            border: 1px solid var(--border-light);
-            border-radius: 12px;
-            padding: 9px 11px;
-            margin-bottom: 7px;
         }
-        .tx-icon-pill {
-            width: 32px;
-            height: 32px;
-            border-radius: 8px;
-            display: grid;
-            place-items: center;
-            font-size: 11px;
-            font-weight: 800;
+        .app-topbar-actions {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #64748B;
+        }
+        .app-scroll-body {
+            flex: 1;
+            overflow-y: auto;
+            padding: 10px 12px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            scrollbar-width: thin;
+        }
+        .app-trial-banner {
+            background: #FFFBEB;
+            border: 1px solid #FDE68A;
+            border-radius: 10px;
+            padding: 8px 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .app-trial-banner svg {
+            color: #D97706;
+            width: 18px;
+            height: 18px;
             flex-shrink: 0;
         }
-        .tx-item.mvola .tx-icon-pill { background: #FEF9C3; color: var(--color-mvola-dark); }
-        .tx-item.orange .tx-icon-pill { background: #FFEDD5; color: #C2410C; }
-        .tx-item.airtel .tx-icon-pill { background: #FEE2E2; color: #B91C1C; }
-        .tx-details { flex: 1; min-width: 0; line-height: 1.25; }
-        .tx-details strong { display: block; font-size: 12.5px; color: var(--text-dark); }
-        .tx-details span { font-size: 11px; color: var(--text-muted); }
-        .tx-amount {
-            font-family: 'JetBrains Mono', monospace;
-            font-weight: 700;
-            font-size: 13px;
+        .app-trial-text {
+            flex: 1;
+            line-height: 1.25;
+        }
+        .app-trial-text strong {
+            display: block;
+            font-size: 11.5px;
+            color: #92400E;
+        }
+        .app-trial-text span {
+            font-size: 10px;
+            color: #6B7280;
+        }
+        .app-trial-action {
+            font-size: 10.5px;
+            font-weight: 800;
+            color: #111827;
+            background: #FEF3C7;
+            padding: 4px 8px;
+            border-radius: 6px;
             white-space: nowrap;
         }
-        .tx-amount.pos { color: #059669; }
-        .tx-amount.neg { color: #DC2626; }
+        .app-hero-card {
+            background: #111827;
+            border: 1px solid #1F2937;
+            border-radius: 14px;
+            padding: 12px 14px;
+            color: #FFFFFF;
+            box-shadow: 0 4px 12px rgba(17, 24, 39, 0.15);
+        }
+        .app-hero-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 4px;
+        }
+        .app-hero-header-label {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 0.8px;
+            color: rgba(255, 255, 255, 0.75);
+            text-transform: uppercase;
+        }
+        .live-dot {
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: #14B8A6;
+            box-shadow: 0 0 6px #14B8A6;
+        }
+        .app-hero-amount {
+            font-size: 22px;
+            font-weight: 800;
+            font-family: 'JetBrains Mono', monospace;
+            color: #FFFFFF;
+            margin: 2px 0 8px;
+        }
+        .app-hero-divider {
+            height: 1px;
+            background: rgba(255, 255, 255, 0.12);
+            margin-bottom: 8px;
+        }
+        .app-hero-subrow {
+            display: flex;
+            justify-content: space-between;
+            font-size: 10.5px;
+            font-weight: 600;
+            color: rgba(255, 255, 255, 0.9);
+        }
+        .app-subrow-item {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        .caisse-dot { width: 7px; height: 7px; border-radius: 50%; background: #059669; }
+        .sims-dot { width: 7px; height: 7px; border-radius: 50%; background: #FFD200; }
+
+        .app-section-header {
+            font-size: 11px;
+            font-weight: 800;
+            color: #111827;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-top: 4px;
+            margin-bottom: 2px;
+        }
+        .app-op-card {
+            background: #FFFFFF;
+            border: 1px solid #E2E8F0;
+            border-radius: 12px;
+            padding: 9px 11px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.02);
+        }
+        .app-op-icon {
+            width: 34px;
+            height: 34px;
+            border-radius: 9px;
+            display: grid;
+            place-items: center;
+            flex-shrink: 0;
+        }
+        .app-op-icon svg { width: 17px; height: 17px; }
+        .app-op-details {
+            flex: 1;
+            min-width: 0;
+            line-height: 1.25;
+        }
+        .app-op-details strong {
+            display: block;
+            font-size: 11.5px;
+            font-weight: 700;
+            color: #111827;
+        }
+        .app-op-details span {
+            font-size: 10px;
+            color: #64748B;
+        }
+        .app-op-badge {
+            font-size: 9.5px;
+            font-weight: 700;
+            padding: 3px 6px;
+            border-radius: 6px;
+            background: #F1F5F9;
+            color: #475569;
+            white-space: nowrap;
+        }
+        .app-balance-row-card {
+            background: #FFFFFF;
+            border: 1px solid #E2E8F0;
+            border-radius: 11px;
+            padding: 8px 10px;
+            display: flex;
+            align-items: center;
+            gap: 9px;
+        }
+        .app-vertical-bar {
+            width: 3.5px;
+            height: 30px;
+            border-radius: 2px;
+            flex-shrink: 0;
+        }
+        .app-balance-label {
+            flex: 1;
+            font-size: 11px;
+            font-weight: 700;
+            color: #1E293B;
+        }
+        .app-balance-amount {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 11.5px;
+            font-weight: 700;
+            color: #0F172A;
+        }
+
+        .app-bottom-nav {
+            background: #FFFFFF;
+            border-top: 1px solid #E2E8F0;
+            padding: 6px 10px 10px;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+        }
+        .app-nav-tab {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 2px;
+            font-size: 9.5px;
+            font-weight: 600;
+            color: #64748B;
+            text-decoration: none;
+        }
+        .app-nav-tab.active {
+            color: var(--brand-teal);
+            font-weight: 800;
+        }
+        .app-nav-tab svg { width: 18px; height: 18px; }
 
         .floating-badge {
             position: absolute;
@@ -447,11 +564,11 @@
             gap: 9px;
             background: #FFFFFF;
             color: var(--text-dark);
-            padding: 11px 16px;
+            padding: 10px 14px;
             border-radius: 14px;
             box-shadow: 0 16px 36px rgba(0, 0, 0, 0.28);
             border: 1px solid rgba(255, 255, 255, 0.8);
-            font-size: 13px;
+            font-size: 12.5px;
             font-weight: 700;
         }
         .floating-badge.top-left { left: -18px; top: 135px; }
@@ -972,69 +1089,163 @@
                 <div class="phone-shell">
                     <div class="phone-screen">
                         <div class="phone-notch"></div>
+                        <!-- Android Status Bar -->
                         <div class="app-status-bar">
                             <span>09:41</span>
-                            <span>SIM 1 &bull; SIM 2</span>
+                            <span style="display:flex; align-items:center; gap:6px;">
+                                <svg class="icon" style="width:12px; height:12px;"><use href="#icon-sim"/></svg>
+                                <span>SIM 1 &bull; SIM 2</span>
+                                <span>85%</span>
+                            </span>
                         </div>
-                        <div class="app-header-view">
-                            <div class="app-header-row">
-                                <div>
-                                    <div style="font-size: 11px; opacity: 0.85;">Point de Vente</div>
-                                    <div class="app-kiosk-name">Kiosque Analakely</div>
-                                </div>
-                                <div class="offline-tag">
-                                    <svg class="icon" style="width: 12px; height: 12px;"><use href="#icon-wifi-off"/></svg>
-                                    <span>Hors-ligne</span>
-                                </div>
+
+                        <!-- TopAppBar Material 3 -->
+                        <div class="app-topbar">
+                            <div class="app-topbar-title">
+                                <svg class="icon" style="width: 20px; height: 20px; color: #111827;"><line x1="4" x2="20" y1="12" y2="12"/><line x1="4" x2="20" y1="6" y2="6"/><line x1="4" x2="20" y1="18" y2="18"/></svg>
+                                <span>CashFlow Pro</span>
+                            </div>
+                            <div class="app-topbar-actions">
+                                <svg class="icon" style="width: 18px; height: 18px; color: #D97706;"><path d="M5 22h14"/><path d="M5 2h14"/><path d="M17 22v-4.172a2 2 0 0 0-.586-1.414L12 12l-4.414 4.414A2 2 0 0 0 7 17.828V22"/><path d="M7 2v4.172a2 2 0 0 0 .586 1.414L12 12l4.414-4.414A2 2 0 0 0 17 6.172V2"/></svg>
+                                <svg class="icon" style="width: 18px; height: 18px; color: #64748B;"><path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"/><circle cx="12" cy="12" r="3"/></svg>
                             </div>
                         </div>
 
-                        <!-- Card Solde -->
-                        <div class="app-balance-card">
-                            <div class="app-balance-title">Solde Global Caisse (Espèces + Virtuel)</div>
-                            <div class="app-balance-val">1 248 500 Ar</div>
-                            <div class="app-mini-stats">
-                                <div class="mini-stat-box green">
-                                    <span>Entrées du jour</span>
-                                    <b>+180 000 Ar</b>
+                        <!-- Scrollable LazyColumn Real Content -->
+                        <div class="app-scroll-body">
+                            <!-- Bandeau Période d'Essai -->
+                            <div class="app-trial-banner">
+                                <svg class="icon"><path d="M5 22h14"/><path d="M5 2h14"/><path d="M17 22v-4.172a2 2 0 0 0-.586-1.414L12 12l-4.414 4.414A2 2 0 0 0 7 17.828V22"/><path d="M7 2v4.172a2 2 0 0 0 .586 1.414L12 12l4.414-4.414A2 2 0 0 0 17 6.172V2"/></svg>
+                                <div class="app-trial-text">
+                                    <strong>Période d'Essai (5 jours)</strong>
+                                    <span>Reste 5 jour(s) d'évaluation</span>
                                 </div>
-                                <div class="mini-stat-box orange">
-                                    <span>Commissions nettes</span>
-                                    <b>+14 850 Ar</b>
+                                <span class="app-trial-action">Activer à vie</span>
+                            </div>
+
+                            <!-- DashboardHeroCard (Trésorerie Totale) -->
+                            <div class="app-hero-card">
+                                <div class="app-hero-header">
+                                    <div class="app-hero-header-label">
+                                        <span class="live-dot"></span>
+                                        <span>TRÉSORERIE TOTALE</span>
+                                    </div>
+                                    <svg class="icon" style="width: 15px; height: 15px; color: rgba(255,255,255,0.8);"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg>
                                 </div>
+                                <div class="app-hero-amount">2 850 000 Ar</div>
+                                <div class="app-hero-divider"></div>
+                                <div class="app-hero-subrow">
+                                    <div class="app-subrow-item">
+                                        <span class="caisse-dot"></span>
+                                        <span>Caisse : 1 250 000 Ar</span>
+                                    </div>
+                                    <div class="app-subrow-item">
+                                        <span class="sims-dot"></span>
+                                        <span>SIMs : 1 600 000 Ar</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Section Opérations Rapides -->
+                            <div class="app-section-header">Opérations Rapides</div>
+
+                            <!-- 1. Dépôt d'argent -->
+                            <div class="app-op-card">
+                                <div class="app-op-icon" style="background: #F1F5F9; color: #111827;">
+                                    <svg class="icon"><path d="m5 12 7-7 7 7"/><path d="M12 19V5"/></svg>
+                                </div>
+                                <div class="app-op-details">
+                                    <strong>Dépôt d'argent</strong>
+                                    <span>Orange • MVola • Airtel</span>
+                                </div>
+                                <span class="app-op-badge">Dépôt USSD</span>
+                                <svg class="icon" style="width: 14px; height: 14px; color: #94A3B8;"><path d="m9 18 6-6-6-6"/></svg>
+                            </div>
+
+                            <!-- 2. Transfert d'argent -->
+                            <div class="app-op-card">
+                                <div class="app-op-icon" style="background: #CCFBF1; color: #0F766E;">
+                                    <svg class="icon"><path d="m16 3 4 4-4 4"/><path d="M20 7H4"/><path d="m8 21-4-4 4-4"/><path d="M4 17h16"/></svg>
+                                </div>
+                                <div class="app-op-details">
+                                    <strong>Transfert d'argent</strong>
+                                    <span>Orange • MVola • Airtel</span>
+                                </div>
+                                <span class="app-op-badge" style="background: #CCFBF1; color: #0F766E;">Transfert USSD</span>
+                                <svg class="icon" style="width: 14px; height: 14px; color: #94A3B8;"><path d="m9 18 6-6-6-6"/></svg>
+                            </div>
+
+                            <!-- 3. Crédit téléphonique -->
+                            <div class="app-op-card">
+                                <div class="app-op-icon" style="background: #FEF3C7; color: #D97706;">
+                                    <svg class="icon"><rect width="14" height="20" x="5" y="2" rx="2" ry="2"/><path d="M12 18h.01"/></svg>
+                                </div>
+                                <div class="app-op-details">
+                                    <strong>Crédit téléphonique</strong>
+                                    <span>Speed • 2-Toi • E-Recharge</span>
+                                </div>
+                                <span class="app-op-badge" style="background: #FEF3C7; color: #B45309;">Crédit USSD</span>
+                                <svg class="icon" style="width: 14px; height: 14px; color: #94A3B8;"><path d="m9 18 6-6-6-6"/></svg>
+                            </div>
+
+                            <!-- Section Soldes Détaillés -->
+                            <div class="app-section-header">Soldes Détaillés</div>
+
+                            <!-- Caisse Espèces -->
+                            <div class="app-balance-row-card">
+                                <div class="app-vertical-bar" style="background: #059669;"></div>
+                                <span class="app-balance-label">Caisse Espèces</span>
+                                <span class="app-balance-amount">1 250 000 Ar</span>
+                                <svg class="icon" style="width: 14px; height: 14px; color: #94A3B8;"><path d="m9 18 6-6-6-6"/></svg>
+                            </div>
+
+                            <!-- MVola -->
+                            <div class="app-balance-row-card">
+                                <div class="app-vertical-bar" style="background: #FFD200;"></div>
+                                <span class="app-balance-label">MVola (*150#)</span>
+                                <span class="app-balance-amount">650 000 Ar</span>
+                                <svg class="icon" style="width: 14px; height: 14px; color: #94A3B8;"><path d="m9 18 6-6-6-6"/></svg>
+                            </div>
+
+                            <!-- Orange Money -->
+                            <div class="app-balance-row-card">
+                                <div class="app-vertical-bar" style="background: #FF7900;"></div>
+                                <span class="app-balance-label">Orange Money (#144#)</span>
+                                <span class="app-balance-amount">550 000 Ar</span>
+                                <svg class="icon" style="width: 14px; height: 14px; color: #94A3B8;"><path d="m9 18 6-6-6-6"/></svg>
+                            </div>
+
+                            <!-- Airtel Money -->
+                            <div class="app-balance-row-card">
+                                <div class="app-vertical-bar" style="background: #E11900;"></div>
+                                <span class="app-balance-label">Airtel Money (*436#)</span>
+                                <span class="app-balance-amount">400 000 Ar</span>
+                                <svg class="icon" style="width: 14px; height: 14px; color: #94A3B8;"><path d="m9 18 6-6-6-6"/></svg>
                             </div>
                         </div>
 
-                        <!-- Liste Dernières Opérations -->
-                        <div class="app-tx-list">
-                            <div class="app-tx-header">
-                                <span>Flux en direct</span>
-                                <span style="color: var(--brand-teal); font-weight: 700;">Journalisé</span>
-                            </div>
-                            <div class="tx-item mvola">
-                                <div class="tx-icon-pill">MV</div>
-                                <div class="tx-details">
-                                    <strong>Dépôt Client</strong>
-                                    <span>034 56 789 01 &bull; Réf: 98124</span>
-                                </div>
-                                <div class="tx-amount pos">+50 000 Ar</div>
-                            </div>
-                            <div class="tx-item orange">
-                                <div class="tx-icon-pill">OM</div>
-                                <div class="tx-details">
-                                    <strong>Retrait Espèces</strong>
-                                    <span>032 14 567 89 &bull; Réf: 44210</span>
-                                </div>
-                                <div class="tx-amount neg">-120 000 Ar</div>
-                            </div>
-                            <div class="tx-item airtel">
-                                <div class="tx-icon-pill">AM</div>
-                                <div class="tx-details">
-                                    <strong>Bonus Commission</strong>
-                                    <span>Airtel Money &bull; Automatique</span>
-                                </div>
-                                <div class="tx-amount pos">+1 200 Ar</div>
-                            </div>
+                        <!-- AppBottomBar Material 3 -->
+                        <div class="app-bottom-nav">
+                            <span class="app-nav-tab active">
+                                <svg class="icon"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+                                <span>Accueil</span>
+                            </span>
+                            <span class="app-nav-tab">
+                                <svg class="icon"><path d="M19 7V4a1 1 0 0 0-1-1H5a2 2 0 0 0 0 4h15a1 1 0 0 1 1 1v4h-3a2 2 0 0 0 0 4h3a1 1 0 0 0 1-1v-2a1 1 0 0 0-1-1"/><path d="M3 5v14a2 2 0 0 0 2 2h15a1 1 0 0 0 1-1v-4"/></svg>
+                                <span>Caisse</span>
+                            </span>
+                            <span class="app-nav-tab">
+                                <svg class="icon"><path d="M4 2v20l2-1 2 1 2-1 2 1 2-1 2 1 2-1 2 1V2l-2 1-2-1-2 1-2-1-2 1-2-1-2 1Z"/><path d="M16 8h-6M16 12h-6M16 16h-6"/></svg>
+                                <span>Journal</span>
+                            </span>
+                            <span class="app-nav-tab">
+                                <svg class="icon"><line x1="12" x2="12" y1="20" y2="10"/><line x1="18" x2="18" y1="20" y2="4"/><line x1="6" x2="6" y1="20" y2="16"/></svg>
+                                <span>Rapports</span>
+                            </span>
+                            <span class="app-nav-tab">
+                                <svg class="icon"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+                                <span>Paramètres</span>
+                            </span>
                         </div>
                     </div>
                 </div>
