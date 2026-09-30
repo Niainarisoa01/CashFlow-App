@@ -802,43 +802,54 @@
         .callout-android-tip svg { color: #15803D; }
 
         /* Pricing & Licenses Section */
+        /* Pricing & Licenses Section */
         .pricing-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 28px;
-            max-width: 860px;
+            gap: 32px;
+            max-width: 880px;
             margin: 0 auto;
+            align-items: stretch;
         }
         .pricing-card {
             background: #FFFFFF;
             border: 1.5px solid var(--border-light);
             border-radius: var(--radius-lg);
-            padding: 40px 32px;
+            padding: 42px 32px 36px;
             display: flex;
             flex-direction: column;
             box-shadow: var(--shadow-subtle);
             position: relative;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        .pricing-card:hover {
+            box-shadow: var(--shadow-card);
         }
         .pricing-card.featured {
-            border-color: var(--brand-teal);
-            box-shadow: 0 16px 36px -4px rgba(15, 118, 110, 0.14);
+            border: 2px solid var(--brand-teal);
+            box-shadow: 0 16px 36px -4px rgba(15, 118, 110, 0.16);
+        }
+        .pricing-card.featured:hover {
+            box-shadow: 0 22px 48px -6px rgba(15, 118, 110, 0.22);
         }
         .pricing-featured-badge {
             position: absolute;
-            top: -14px;
+            top: -15px;
             left: 50%;
             transform: translateX(-50%);
             background: var(--brand-teal);
             color: #FFFFFF;
-            padding: 4px 16px;
+            padding: 6px 20px;
             border-radius: 999px;
-            font-size: 12.5px;
+            font-size: 11.5px;
             font-weight: 800;
             text-transform: uppercase;
-            letter-spacing: 0.5px;
+            letter-spacing: 0.6px;
+            white-space: nowrap;
+            box-shadow: 0 4px 14px rgba(15, 118, 110, 0.35);
         }
         .pricing-plan-name {
-            font-size: 20px;
+            font-size: 22px;
             font-weight: 800;
             color: var(--text-dark);
             margin-bottom: 6px;
@@ -846,26 +857,47 @@
         .pricing-plan-desc {
             font-size: 14px;
             color: var(--text-muted);
-            margin-bottom: 24px;
+            margin-bottom: 20px;
+            min-height: 42px;
         }
-        .pricing-price-tag {
+        .pricing-price-box {
+            margin-bottom: 24px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid var(--border-light);
+        }
+        .pricing-price-row {
+            display: flex;
+            align-items: baseline;
+            gap: 8px;
+        }
+        .pricing-amount {
             font-size: 38px;
             font-weight: 800;
             color: var(--text-dark);
-            margin-bottom: 24px;
-            display: flex;
-            align-items: baseline;
-            gap: 6px;
+            line-height: 1.1;
+            white-space: nowrap;
+            letter-spacing: -0.5px;
         }
-        .pricing-price-tag small {
-            font-size: 15px;
+        .pricing-period {
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--text-muted);
+            white-space: nowrap;
+        }
+        .pricing-card.featured .pricing-period {
+            color: var(--brand-teal);
+            font-weight: 800;
+        }
+        .pricing-subtext {
+            font-size: 13px;
             font-weight: 600;
             color: var(--text-muted);
+            margin-top: 6px;
         }
         .pricing-features-list {
             list-style: none;
             display: grid;
-            gap: 12px;
+            gap: 13px;
             margin-bottom: 32px;
             flex: 1;
         }
@@ -873,10 +905,15 @@
             font-size: 14.5px;
             color: var(--text-dark);
             display: flex;
-            align-items: center;
+            align-items: flex-start;
             gap: 10px;
+            line-height: 1.45;
         }
-        .pricing-features-list li svg { color: #059669; }
+        .pricing-features-list li svg {
+            color: #059669;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
 
         /* Accordion FAQ */
         .faq-container {
@@ -1438,16 +1475,20 @@
                 <div class="pricing-card">
                     <div class="pricing-plan-name">Essai Découverte</div>
                     <div class="pricing-plan-desc">Pour tester dans votre kiosque en conditions réelles.</div>
-                    <div class="pricing-price-tag">
-                        0 Ar <small>/ 5 jours</small>
+                    <div class="pricing-price-box">
+                        <div class="pricing-price-row">
+                            <span class="pricing-amount">0 Ar</span>
+                            <span class="pricing-period">/ 5 jours</span>
+                        </div>
+                        <div class="pricing-subtext">Essai complet sans engagement</div>
                     </div>
                     <ul class="pricing-features-list">
                         <li><svg class="icon"><use href="#icon-check"/></svg> Accès complet à toutes les fonctionnalités</li>
                         <li><svg class="icon"><use href="#icon-check"/></svg> Détection SMS MVola, Orange, Airtel</li>
                         <li><svg class="icon"><use href="#icon-check"/></svg> Automatisation USSD Dual-SIM</li>
-                        <li><svg class="icon"><use href="#icon-check"/></svg> Sans engagement de paiement</li>
+                        <li><svg class="icon"><use href="#icon-check"/></svg> Sans engagement ni carte bancaire</li>
                     </ul>
-                    <a href="https://github.com/Niainarisoa01/CashFlow-App/releases/download/v1.1.0/CashFlowPro.apk" class="btn btn-outline-dark">
+                    <a href="https://github.com/Niainarisoa01/CashFlow-App/releases/download/v1.1.0/CashFlowPro.apk" class="btn btn-outline-dark" style="width: 100%;">
                         <span>Télécharger et Essayer</span>
                     </a>
                 </div>
@@ -1457,17 +1498,21 @@
                     <div class="pricing-featured-badge">Recommandé pour Kiosques</div>
                     <div class="pricing-plan-name">Licence Définitive</div>
                     <div class="pricing-plan-desc">Activation permanente liée à votre smartphone professionnel.</div>
-                    <div class="pricing-price-tag">
-                        25 000 Ar <small>/ Licence à vie (Paiement unique)</small>
+                    <div class="pricing-price-box">
+                        <div class="pricing-price-row">
+                            <span class="pricing-amount">25 000 Ar</span>
+                            <span class="pricing-period">/ à vie</span>
+                        </div>
+                        <div class="pricing-subtext">Paiement unique • Aucun abonnement mensuel</div>
                     </div>
                     <ul class="pricing-features-list">
                         <li><svg class="icon"><use href="#icon-check"/></svg> <strong>Utilisation illimitée sans expiration</strong></li>
-                        <li><svg class="icon"><use href="#icon-check"/></svg> Zéro abonnement mensuel (Paiement unique de 25 000 Ar)</li>
+                        <li><svg class="icon"><use href="#icon-check"/></svg> Zéro abonnement mensuel (Paiement unique)</li>
                         <li><svg class="icon"><use href="#icon-check"/></svg> Mises à jour des codes USSD incluses</li>
                         <li><svg class="icon"><use href="#icon-check"/></svg> Sauvegarde et restauration illimitées</li>
                         <li><svg class="icon"><use href="#icon-check"/></svg> Assistance technique prioritaire WhatsApp (034 48 252 85)</li>
                     </ul>
-                    <a href="https://wa.me/261344825285?text=Bonjour,%20je%20souhaite%20commander%20une%20licence%20%C3%A0%20vie%20CashFlow%20Pro%20(25%20000%20Ar)" class="btn btn-amber" target="_blank" rel="noopener">
+                    <a href="https://wa.me/261344825285?text=Bonjour,%20je%20souhaite%20commander%20une%20licence%20%C3%A0%20vie%20CashFlow%20Pro%20(25%20000%20Ar)" class="btn btn-amber" target="_blank" rel="noopener" style="width: 100%;">
                         <svg class="icon"><use href="#icon-whatsapp"/></svg>
                         <span>Commander sur WhatsApp (034 48 252 85)</span>
                     </a>
