@@ -101,40 +101,79 @@
         }
 
         .container {
-            max-width: 1140px;
+            max-width: 1200px;
             margin: 0 auto;
             padding: 0 24px;
         }
 
         /* Top Notification Bar */
         .top-banner {
-            background: linear-gradient(90deg, #064E3B, #0F766E);
+            background: linear-gradient(90deg, #064E3B 0%, #0F766E 50%, #065F46 100%);
             color: #ECFDF5;
-            padding: 9px 16px;
-            text-align: center;
-            font-size: 13.5px;
-            font-weight: 600;
+            padding: 8px 16px;
+            font-size: 13px;
+            font-weight: 500;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+            z-index: 101;
+        }
+
+        .top-banner-inner {
             display: flex;
             align-items: center;
             justify-content: center;
             gap: 10px;
+            flex-wrap: wrap;
+            text-align: center;
+            max-width: 1200px;
+            margin: 0 auto;
         }
 
-        .top-banner a {
+        .top-banner-pill {
+            display: inline-flex;
+            align-items: center;
+            background: rgba(255, 255, 255, 0.16);
+            border: 1px solid rgba(255, 255, 255, 0.28);
+            padding: 2px 8px;
+            border-radius: 999px;
+            font-size: 11px;
+            font-weight: 800;
+            letter-spacing: 0.4px;
             color: #FFFFFF;
-            text-decoration: underline;
+            white-space: nowrap;
+        }
+
+        .top-banner-text {
+            color: #E6FFFA;
+            font-weight: 600;
+        }
+
+        .top-banner-cta {
+            color: #A7F3D0;
             font-weight: 700;
-            margin-left: 6px;
+            text-decoration: underline;
+            text-underline-offset: 3px;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            white-space: nowrap;
+            transition: color 0.2s ease;
+        }
+
+        .top-banner-cta:hover {
+            color: #FFFFFF;
         }
 
         /* Navigation Header */
         header {
             position: sticky;
             top: 0;
-            z-index: 50;
+            z-index: 100;
             background: rgba(10, 34, 40, 0.96);
-            backdrop-filter: blur(12px);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
             border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            width: 100%;
         }
 
         .navbar {
@@ -142,60 +181,211 @@
             align-items: center;
             justify-content: space-between;
             height: 72px;
+            gap: 16px;
         }
 
         .brand-logo {
             display: inline-flex;
             align-items: center;
-            gap: 12px;
+            gap: 10px;
             color: #FFFFFF;
             font-weight: 800;
-            font-size: 21px;
+            font-size: 20px;
             letter-spacing: -0.3px;
             text-decoration: none;
+            white-space: nowrap;
+            flex-shrink: 0;
+            user-select: none;
         }
 
         .brand-logo:hover {
             color: #FFFFFF;
         }
 
+        .brand-logo-text {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            white-space: nowrap;
+        }
+
+        .brand-badge {
+            background: linear-gradient(135deg, #14B8A6, #0F766E);
+            color: #FFFFFF;
+            font-size: 10px;
+            font-weight: 800;
+            letter-spacing: 0.6px;
+            padding: 2px 7px;
+            border-radius: 6px;
+            text-transform: uppercase;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            line-height: 1.2;
+            display: inline-block;
+        }
+
         .brand-logo-img {
-            width: 42px;
-            height: 42px;
-            border-radius: 12px;
+            width: 40px;
+            height: 40px;
+            border-radius: 11px;
             object-fit: cover;
-            box-shadow: 0 0 20px rgba(20, 184, 166, 0.4), 0 4px 10px rgba(0, 0, 0, 0.25);
+            box-shadow: 0 0 18px rgba(20, 184, 166, 0.4), 0 4px 10px rgba(0, 0, 0, 0.25);
             transition: transform 0.25s ease, box-shadow 0.25s ease;
             flex-shrink: 0;
             display: block;
         }
 
         .brand-logo:hover .brand-logo-img {
-            transform: scale(1.06);
-            box-shadow: 0 0 28px rgba(45, 212, 191, 0.65), 0 6px 14px rgba(0, 0, 0, 0.3);
+            transform: scale(1.05);
+            box-shadow: 0 0 24px rgba(45, 212, 191, 0.6), 0 6px 14px rgba(0, 0, 0, 0.3);
         }
 
         .nav-menu {
             display: flex;
             align-items: center;
-            gap: 28px;
+            gap: 22px;
+            margin: 0 auto;
         }
 
         .nav-link {
             color: #CBD5E1;
             font-size: 14.5px;
             font-weight: 600;
-            transition: color 0.2s;
+            transition: color 0.2s, background 0.2s;
+            white-space: nowrap;
+            padding: 6px 10px;
+            border-radius: 8px;
         }
 
         .nav-link:hover {
             color: #FFFFFF;
+            background: rgba(255, 255, 255, 0.06);
         }
 
         .nav-actions {
             display: flex;
             align-items: center;
-            gap: 12px;
+            gap: 10px;
+            flex-shrink: 0;
+        }
+
+        .nav-btn-licence {
+            padding: 9px 15px !important;
+            font-size: 13.5px !important;
+            height: 40px;
+            box-sizing: border-box;
+        }
+
+        .nav-btn-whatsapp {
+            padding: 9px 16px !important;
+            font-size: 13.5px !important;
+            height: 40px;
+            box-sizing: border-box;
+        }
+
+        /* Mobile Menu Button (Hamburger) */
+        .mobile-menu-btn {
+            display: none;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.16);
+            color: #FFFFFF;
+            cursor: pointer;
+            padding: 0;
+            transition: background 0.2s, transform 0.15s;
+            flex-shrink: 0;
+        }
+
+        .mobile-menu-btn:hover {
+            background: rgba(255, 255, 255, 0.16);
+        }
+
+        .mobile-menu-btn svg {
+            width: 20px;
+            height: 20px;
+            stroke-width: 2;
+        }
+
+        /* Mobile Navigation Drawer */
+        .mobile-nav-drawer {
+            display: none;
+            position: fixed;
+            top: 72px;
+            left: 0;
+            width: 100%;
+            background: rgba(10, 30, 36, 0.98);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+            padding: 18px 20px 24px;
+            box-shadow: 0 24px 48px rgba(0, 0, 0, 0.6);
+            z-index: 99;
+            flex-direction: column;
+            gap: 14px;
+            box-sizing: border-box;
+            max-height: calc(100vh - 72px);
+            overflow-y: auto;
+            transform: translateY(-8px);
+            opacity: 0;
+            pointer-events: none;
+            transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.25s ease;
+        }
+
+        .mobile-nav-drawer.open {
+            display: flex;
+            transform: translateY(0);
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .mobile-nav-links {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .mobile-nav-link {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            color: #E2E8F0;
+            font-size: 15px;
+            font-weight: 600;
+            padding: 12px 16px;
+            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            text-decoration: none;
+            transition: all 0.2s ease;
+        }
+
+        .mobile-nav-link:hover,
+        .mobile-nav-link:active {
+            background: rgba(20, 184, 166, 0.18);
+            border-color: rgba(20, 184, 166, 0.35);
+            color: #FFFFFF;
+            transform: translateX(4px);
+        }
+
+        .mobile-badge-pill {
+            background: var(--brand-teal);
+            color: #FFFFFF;
+            font-size: 11.5px;
+            font-weight: 800;
+            padding: 3px 8px;
+            border-radius: 6px;
+        }
+
+        .mobile-nav-actions {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-top: 6px;
+            padding-top: 14px;
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
         }
 
         /* Buttons */
@@ -1268,6 +1458,15 @@
 
         /* Responsive Master System (Mobile-First / Fluid Grid) */
         @media (max-width: 1024px) {
+            .nav-menu {
+                gap: 16px;
+            }
+
+            .nav-link {
+                font-size: 13.5px;
+                padding: 4px 6px;
+            }
+
             .hero-layout {
                 grid-template-columns: 1fr;
                 text-align: center;
@@ -1319,6 +1518,20 @@
             }
         }
 
+        @media (max-width: 960px) {
+            .nav-menu {
+                display: none !important;
+            }
+
+            .mobile-menu-btn {
+                display: inline-flex !important;
+            }
+
+            .nav-btn-licence {
+                display: none !important;
+            }
+        }
+
         @media (max-width: 768px) {
             .section-padding {
                 padding: 60px 0;
@@ -1358,7 +1571,13 @@
             }
 
             .navbar {
-                height: 64px;
+                height: 62px;
+            }
+
+            .mobile-nav-drawer {
+                top: 62px;
+                max-height: calc(100vh - 62px);
+                padding: 16px 18px 24px;
             }
 
             .brand-logo {
@@ -1372,19 +1591,19 @@
                 border-radius: 9px;
             }
 
-            .nav-menu {
-                display: none;
-            }
-
             .nav-actions {
-                gap: 6px;
+                gap: 8px;
             }
 
-            .nav-actions .btn {
-                width: auto;
-                padding: 7px 12px;
-                font-size: 12.5px;
-                border-radius: 10px;
+            .nav-btn-whatsapp {
+                padding: 7px 11px !important;
+                font-size: 12.5px !important;
+                height: 36px;
+            }
+
+            .mobile-menu-btn {
+                width: 36px;
+                height: 36px;
             }
 
             .hero-section {
@@ -1555,13 +1774,28 @@
 
         /* Very Small Devices (<= 380px, e.g. iPhone SE, compact Android 360px) */
         @media (max-width: 380px) {
-            .nav-actions .btn-ghost-light {
+            .brand-logo {
+                font-size: 16px;
+            }
+
+            .brand-badge {
+                font-size: 8.5px;
+                padding: 1px 4px;
+            }
+
+            .whatsapp-label {
                 display: none;
             }
 
-            .nav-actions .btn-whatsapp {
-                padding: 6px 10px;
-                font-size: 12px;
+            .nav-btn-whatsapp::after {
+                content: "WhatsApp";
+                font-size: 11px;
+                font-weight: 700;
+            }
+
+            .nav-btn-whatsapp {
+                padding: 6px 9px !important;
+                font-size: 11.5px !important;
             }
 
             .phone-shell {
@@ -1639,21 +1873,33 @@
             <path d="M8.53 16.11a6 6 0 0 1 6.95 0" />
             <line x1="12" x2="12.01" y1="20" y2="20" />
         </symbol>
+        <symbol id="icon-menu" viewBox="0 0 24 24">
+            <line x1="3" x2="21" y1="6" y2="6" />
+            <line x1="3" x2="21" y1="12" y2="12" />
+            <line x1="3" x2="21" y1="18" y2="18" />
+        </symbol>
     </svg>
 
     <!-- Top Announcement -->
     <div class="top-banner">
-        <span>⚡ <strong>Version Officielle 1.1.0 disponible</strong> : Signature certifiée et support des dernières
-            syntaxes USSD 2026.</span>
-        <a href="#telecharger">Télécharger gratuitement</a>
+        <div class="top-banner-inner">
+            <span class="top-banner-pill">⚡ NOUVEAU v1.1.0</span>
+            <span class="top-banner-text">Signature certifiée & support des dernières syntaxes USSD 2026.</span>
+            <a href="#telecharger" class="top-banner-cta">
+                <span>Télécharger l'APK</span>
+                <svg class="icon" style="width: 12px; height: 12px; display: inline-block;">
+                    <use href="#icon-chevron" />
+                </svg>
+            </a>
+        </div>
     </div>
 
     <!-- Navigation Header -->
     <header>
         <div class="container navbar">
             <a href="#" class="brand-logo" aria-label="CashFlow Pro Madagascar">
-                <img src="logo.png" alt="CashFlow Pro Logo" class="brand-logo-img" width="42" height="42">
-                <span>CashFlow Pro</span>
+                <img src="logo.png" alt="CashFlow Pro Logo" class="brand-logo-img" width="40" height="40">
+                <span class="brand-logo-text">CashFlow <span class="brand-badge">PRO</span></span>
             </a>
 
             <nav class="nav-menu" aria-label="Navigation principale">
@@ -1664,19 +1910,57 @@
             </nav>
 
             <div class="nav-actions">
-                <a href="#tarifs" class="btn btn-ghost-light" style="padding: 10px 16px; font-size: 14px;">
+                <a href="#tarifs" class="btn btn-ghost-light nav-btn-licence">
                     <svg class="icon">
                         <use href="#icon-key" />
                     </svg>
-                    <span>Licence à vie (25 000 Ar)</span>
+                    <span>Licence 25 000 Ar</span>
                 </a>
                 <a href="https://wa.me/261344825285?text=Bonjour%20Support%20CashFlow%20Pro,%20je%20souhaite%20commander%20la%20licence%20%C3%A0%20vie%20(25%20000%20Ar)"
-                    class="btn btn-whatsapp" style="padding: 10px 16px; font-size: 14px;" target="_blank"
-                    rel="noopener">
+                    class="btn btn-whatsapp nav-btn-whatsapp" target="_blank" rel="noopener">
                     <svg class="icon">
                         <use href="#icon-whatsapp" />
                     </svg>
-                    <span>034 48 252 85</span>
+                    <span class="whatsapp-label">034 48 252 85</span>
+                </a>
+                <button type="button" class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Menu" aria-expanded="false">
+                    <svg class="icon" id="mobileMenuIcon">
+                        <use href="#icon-menu" />
+                    </svg>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Navigation Drawer -->
+        <div class="mobile-nav-drawer" id="mobileNavDrawer" aria-hidden="true">
+            <div class="mobile-nav-links">
+                <a href="#avantages" class="mobile-nav-link">
+                    <span>✨ Avantages Kiosque</span>
+                    <svg class="icon" style="width: 14px; height: 14px;"><use href="#icon-chevron" /></svg>
+                </a>
+                <a href="#installation" class="mobile-nav-link">
+                    <span>📲 Guide d'Installation</span>
+                    <svg class="icon" style="width: 14px; height: 14px;"><use href="#icon-chevron" /></svg>
+                </a>
+                <a href="#tarifs" class="mobile-nav-link">
+                    <span>💰 Tarifs & Licence à vie</span>
+                    <span class="mobile-badge-pill">25 000 Ar</span>
+                </a>
+                <a href="#faq" class="mobile-nav-link">
+                    <span>❓ Questions Fréquentes</span>
+                    <svg class="icon" style="width: 14px; height: 14px;"><use href="#icon-chevron" /></svg>
+                </a>
+            </div>
+            <div class="mobile-nav-actions">
+                <a href="https://github.com/Niainarisoa01/CashFlow-App/releases/download/v1.1.0/CashFlowPro.apk"
+                    class="btn btn-amber" style="width: 100%;">
+                    <svg class="icon"><use href="#icon-download" /></svg>
+                    <span>Télécharger l'APK v1.1.0</span>
+                </a>
+                <a href="https://wa.me/261344825285?text=Bonjour%20Support%20CashFlow%20Pro,%20je%20souhaite%20commander%20la%20licence%20%C3%A0%20vie%20(25%20000%20Ar)"
+                    class="btn btn-whatsapp" style="width: 100%;" target="_blank" rel="noopener">
+                    <svg class="icon"><use href="#icon-whatsapp" /></svg>
+                    <span>Commander sur WhatsApp (034 48 252 85)</span>
                 </a>
             </div>
         </div>
@@ -2391,8 +2675,9 @@
         </div>
     </footer>
 
-    <!-- Interactive FAQ Script -->
+    <!-- Interactive Scripts -->
     <script>
+        // Interactive FAQ Script
         document.querySelectorAll('.faq-question').forEach(button => {
             button.addEventListener('click', () => {
                 const item = button.parentElement;
@@ -2403,6 +2688,38 @@
                 }
             });
         });
+
+        // Mobile Menu Drawer Script
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mobileNavDrawer = document.getElementById('mobileNavDrawer');
+        if (mobileMenuBtn && mobileNavDrawer) {
+            mobileMenuBtn.addEventListener('click', () => {
+                const isOpen = mobileNavDrawer.classList.toggle('open');
+                mobileMenuBtn.setAttribute('aria-expanded', isOpen);
+                mobileNavDrawer.setAttribute('aria-hidden', !isOpen);
+                mobileMenuBtn.innerHTML = isOpen 
+                    ? '<svg class="icon"><use href="#icon-x" /></svg>'
+                    : '<svg class="icon"><use href="#icon-menu" /></svg>';
+            });
+
+            document.querySelectorAll('.mobile-nav-drawer a').forEach(link => {
+                link.addEventListener('click', () => {
+                    mobileNavDrawer.classList.remove('open');
+                    mobileMenuBtn.setAttribute('aria-expanded', 'false');
+                    mobileNavDrawer.setAttribute('aria-hidden', 'true');
+                    mobileMenuBtn.innerHTML = '<svg class="icon"><use href="#icon-menu" /></svg>';
+                });
+            });
+
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape' && mobileNavDrawer.classList.contains('open')) {
+                    mobileNavDrawer.classList.remove('open');
+                    mobileMenuBtn.setAttribute('aria-expanded', 'false');
+                    mobileNavDrawer.setAttribute('aria-hidden', 'true');
+                    mobileMenuBtn.innerHTML = '<svg class="icon"><use href="#icon-menu" /></svg>';
+                }
+            });
+        }
     </script>
 </body>
 
