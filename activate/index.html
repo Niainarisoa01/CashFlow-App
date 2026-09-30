@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Activation CashFlow Pro - Clé Officielle</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220%22%20width=%22100%22%20height=%22100%22><text y=%22.9em%22 font-size=%2290%22>⚡</text></svg>">
+    <style>
+        :root {
+            --primary: #111827;
+            --primary-hover: #1F2937;
+            --accent: #0F766E;
+            --accent-light: #14B8A6;
+            --bg: #F9FAFB;
+            --surface: #FFFFFF;
+            --border: #E5E7EB;
+            --text-primary: #111827;
+            --text-secondary: #4B5563;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: var(--bg);
+            color: var(--text-primary);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        .card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 24px;
+            max-width: 460px;
+            width: 100%;
+            padding: 36px 28px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            text-align: center;
+        }
+        .logo {
+            width: 72px;
+            height: 72px;
+            border-radius: 18px;
+            background: linear-gradient(135deg, var(--accent), var(--primary));
+            color: #FFFFFF;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 36px;
+            margin-bottom: 20px;
+            box-shadow: 0 6px 16px rgba(15, 118, 110, 0.25);
+        }
+        h1 {
+            font-size: 22px;
+            font-weight: 800;
+            color: var(--primary);
+            margin-bottom: 8px;
+        }
+        p {
+            font-size: 14px;
+            color: var(--text-secondary);
+            line-height: 1.5;
+            margin-bottom: 20px;
+        }
+        .key-box {
+            background: #F0FDFA;
+            border: 2px dashed var(--accent-light);
+            border-radius: 12px;
+            padding: 14px;
+            font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+            font-size: 15px;
+            font-weight: 700;
+            color: var(--accent);
+            word-break: break-all;
+            margin-bottom: 20px;
+            user-select: all;
+        }
+        .btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            width: 100%;
+            padding: 15px;
+            border-radius: 12px;
+            font-size: 15px;
+            font-weight: 700;
+            text-decoration: none;
+            cursor: pointer;
+            border: none;
+            transition: all 0.2s;
+            margin-bottom: 12px;
+        }
+        .btn-primary {
+            background: var(--primary);
+            color: #FFFFFF;
+            box-shadow: 0 4px 12px rgba(17, 24, 39, 0.15);
+        }
+        .btn-primary:hover {
+            background: var(--primary-hover);
+        }
+        .btn-outline {
+            background: transparent;
+            color: var(--accent);
+            border: 1.5px solid var(--accent);
+        }
+        .btn-outline:hover {
+            background: #F0FDFA;
+        }
+        .btn-download {
+            background: #F3F4F6;
+            color: var(--text-primary);
+            font-size: 14px;
+            border: 1px solid var(--border);
+            margin-top: 8px;
+        }
+        .btn-download:hover {
+            background: #E5E7EB;
+        }
+        .toast {
+            position: fixed;
+            bottom: 24px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--primary);
+            color: #FFFFFF;
+            padding: 12px 24px;
+            border-radius: 10px;
+            font-size: 14px;
+            font-weight: 600;
+            display: none;
+            z-index: 100;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+        }
+        .helper-text {
+            font-size: 12px;
+            color: #9CA3AF;
+            margin-top: 14px;
+        }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <div class="logo">⚡</div>
+        <h1>Activation CashFlow Pro</h1>
+        <p>Connexion et activation instantanée de votre licence sur votre appareil.</p>
+
+        <div id="keyContainer" style="display: none;">
+            <div class="key-box" id="licenseKey">---</div>
+            <a class="btn btn-primary" id="openAppBtn" href="#">🚀 Ouvrir CashFlow Pro</a>
+            <button class="btn btn-outline" id="copyBtn" onclick="copyKey()">📋 Copier la clé</button>
+            <a class="btn btn-download" href="../CashFlowPro.apk" download>📥 Télécharger l'application (APK)</a>
+            <div class="helper-text">Astuce : Si le bouton ne s'ouvre pas, copiez simplement la clé ci-dessus puis ouvrez l'application.</div>
+        </div>
+
+        <div id="noKey" style="display: none;">
+            <p style="color: #DC2626; font-weight: 600;">Aucune clé de licence n'a été spécifiée dans ce lien.</p>
+            <a class="btn btn-primary" href="../">Retour à l'accueil</a>
+            <a class="btn btn-download" href="../CashFlowPro.apk" download>📥 Télécharger l'application (APK)</a>
+        </div>
+    </div>
+
+    <div class="toast" id="toast">✓ Clé copiée dans le presse-papiers !</div>
+
+    <script>
+        const params = new URLSearchParams(window.location.search);
+        const key = params.get('key');
+
+        if (key && key.trim().length > 0) {
+            const cleanKey = key.trim();
+            document.getElementById('keyContainer').style.display = 'block';
+            document.getElementById('licenseKey').textContent = cleanKey;
+            
+            const deepLink = "cashflow://activate?key=" + encodeURIComponent(cleanKey);
+            document.getElementById('openAppBtn').href = deepLink;
+
+            // Tentative automatique d'ouverture de l'application sur smartphone Android
+            window.location.href = deepLink;
+        } else {
+            document.getElementById('noKey').style.display = 'block';
+        }
+
+        function copyKey() {
+            if (!key) return;
+            navigator.clipboard.writeText(key.trim()).then(() => {
+                const toast = document.getElementById('toast');
+                toast.style.display = 'block';
+                setTimeout(() => { toast.style.display = 'none'; }, 2500);
+            });
+        }
+    </script>
+</body>
+</html>

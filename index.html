@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CashFlow Pro - L'application n°1 des Kiosques Mobile Money à Madagascar</title>
+    <meta name="description" content="Téléchargez l'application officielle CashFlow Pro pour gérer votre caisse Mobile Money (MVola, Orange Money, Airtel Money) en toute sécurité.">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220%22%20width=%22100%22%20height=%22100%22><text y=%22.9em%22 font-size=%2290%22>⚡</text></svg>">
+    <style>
+        :root {
+            --primary: #111827;
+            --primary-hover: #1F2937;
+            --accent: #0F766E;
+            --accent-hover: #115E59;
+            --accent-light: #14B8A6;
+            --bg: #F9FAFB;
+            --surface: #FFFFFF;
+            --border: #E5E7EB;
+            --text-primary: #111827;
+            --text-secondary: #4B5563;
+            --text-muted: #9CA3AF;
+            --success: #059669;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: var(--bg);
+            color: var(--text-primary);
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        header {
+            background: var(--surface);
+            border-bottom: 1px solid var(--border);
+            padding: 16px 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-weight: 800;
+            font-size: 20px;
+            color: var(--primary);
+            text-decoration: none;
+        }
+        .brand-icon {
+            width: 36px;
+            height: 36px;
+            background: linear-gradient(135deg, var(--accent), var(--primary));
+            color: #fff;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+        }
+        main {
+            flex: 1;
+            max-width: 800px;
+            width: 100%;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+        .hero-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 24px;
+            padding: 40px 32px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
+            text-align: center;
+        }
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: #ECFDF5;
+            color: var(--success);
+            border: 1px solid #A7F3D0;
+            padding: 6px 14px;
+            border-radius: 999px;
+            font-size: 13px;
+            font-weight: 700;
+            margin-bottom: 24px;
+        }
+        h1 {
+            font-size: 32px;
+            font-weight: 800;
+            color: var(--primary);
+            letter-spacing: -0.5px;
+            margin-bottom: 16px;
+            line-height: 1.25;
+        }
+        .subtitle {
+            font-size: 17px;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto 32px;
+        }
+        .cta-container {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            max-width: 420px;
+            margin: 0 auto 36px;
+        }
+        .btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            padding: 16px 24px;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: 700;
+            text-decoration: none;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .btn-download {
+            background: var(--primary);
+            color: #FFFFFF;
+            box-shadow: 0 4px 14px rgba(17, 24, 39, 0.2);
+        }
+        .btn-download:hover {
+            background: var(--primary-hover);
+            transform: translateY(-2px);
+        }
+        .btn-activate {
+            background: transparent;
+            color: var(--accent);
+            border: 2px solid var(--accent);
+        }
+        .btn-activate:hover {
+            background: #F0FDFA;
+        }
+        .apk-meta {
+            font-size: 13px;
+            color: var(--text-muted);
+            margin-top: -6px;
+        }
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 16px;
+            margin-top: 36px;
+            text-align: left;
+        }
+        .feature-box {
+            background: #F9FAFB;
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 20px;
+        }
+        .feature-icon {
+            font-size: 26px;
+            margin-bottom: 10px;
+            display: block;
+        }
+        .feature-title {
+            font-size: 15px;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 4px;
+        }
+        .feature-desc {
+            font-size: 13px;
+            color: var(--text-secondary);
+            line-height: 1.5;
+        }
+        .operator-logos {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 16px;
+            margin-top: 30px;
+            padding-top: 24px;
+            border-top: 1px solid var(--border);
+        }
+        .op-chip {
+            padding: 6px 14px;
+            border-radius: 8px;
+            font-size: 13px;
+            font-weight: 700;
+        }
+        .op-telma { background: #FEF9C3; color: #854D0E; }
+        .op-orange { background: #FFEDD5; color: #9A3412; }
+        .op-airtel { background: #FEE2E2; color: #991B1B; }
+        footer {
+            text-align: center;
+            padding: 24px;
+            font-size: 13px;
+            color: var(--text-muted);
+            border-top: 1px solid var(--border);
+            background: var(--surface);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <a href="#" class="brand">
+            <div class="brand-icon">⚡</div>
+            <span>CashFlow Pro</span>
+        </a>
+        <a href="activate/" class="btn btn-activate" style="padding: 8px 16px; font-size: 14px;">Activation Clé</a>
+    </header>
+
+    <main>
+        <div class="hero-card">
+            <div class="badge">
+                <span>✓</span> Version Officielle 1.1.0 • Certifiée Production
+            </div>
+            <h1>La caisse Mobile Money ultra-rapide pour Kiosques</h1>
+            <p class="subtitle">
+                Automatisez vos opérations MVola, Orange Money et Airtel Money à Madagascar. Interception SMS temps réel, exécution USSD silencieuse et sécurité hors-ligne garantie.
+            </p>
+
+            <div class="cta-container">
+                <a href="CashFlowPro.apk" class="btn btn-download" download>
+                    <span>📥</span> Télécharger l'Application (APK)
+                </a>
+                <div class="apk-meta">Taille : ~14 Mo • Android 7.0 et supérieur • Signature Officielle</div>
+                <a href="activate/" class="btn btn-activate">
+                    <span>🔑</span> Activer une Licence
+                </a>
+            </div>
+
+            <div class="operator-logos">
+                <span class="op-chip op-telma">MVola (*150#)</span>
+                <span class="op-chip op-orange">Orange Money (#144#)</span>
+                <span class="op-chip op-airtel">Airtel Money (*436#)</span>
+            </div>
+
+            <div class="features-grid">
+                <div class="feature-box">
+                    <span class="feature-icon">📩</span>
+                    <div class="feature-title">Détection SMS 100% Auto</div>
+                    <div class="feature-desc">Enregistrement instantané des dépôts, retraits et commissions sans aucune saisie manuelle.</div>
+                </div>
+                <div class="feature-box">
+                    <span class="feature-icon">⚡</span>
+                    <div class="feature-title">Automatisation USSD Dual SIM</div>
+                    <div class="feature-desc">Sélection intelligente de la bonne carte SIM et masquage des menus système.</div>
+                </div>
+                <div class="feature-box">
+                    <span class="feature-icon">🛡️</span>
+                    <div class="feature-title">100% Hors-Ligne & Sécurisé</div>
+                    <div class="feature-desc">Vos données financières restent exclusivement sur votre appareil avec chiffrement militaire.</div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 CashFlow Pro Madagascar. Tous droits réservés.</p>
+    </footer>
+</body>
+</html>
