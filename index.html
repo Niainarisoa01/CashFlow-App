@@ -18,7 +18,8 @@
     <meta property="og:description" content="Automatisez vos opérations MVola, Orange Money et Airtel Money. Zéro erreur de calcul, clôture de caisse instantanée et 100% hors-ligne.">
     <meta property="og:url" content="https://niainarisoa01.github.io/CashFlow-App/">
     
-    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%230F766E'/%3E%3Cpath d='M18 5 8 18h7l-1 9 10-13h-7z' fill='%23fff'/%3E%3C/svg%3E">
+    <link rel="icon" type="image/png" href="logo.png">
+    <link rel="apple-touch-icon" href="logo.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
@@ -112,23 +113,31 @@
             height: 72px;
         }
         .brand-logo {
-            display: flex;
+            display: inline-flex;
             align-items: center;
             gap: 12px;
             color: #FFFFFF;
             font-weight: 800;
-            font-size: 20px;
-            letter-spacing: -0.4px;
+            font-size: 21px;
+            letter-spacing: -0.3px;
+            text-decoration: none;
         }
-        .brand-icon-box {
-            width: 38px;
-            height: 38px;
-            border-radius: 10px;
-            background: linear-gradient(135deg, var(--brand-teal-light), var(--brand-mint));
-            color: var(--brand-dark);
-            display: grid;
-            place-items: center;
-            box-shadow: 0 0 16px rgba(94, 234, 212, 0.35);
+        .brand-logo:hover {
+            color: #FFFFFF;
+        }
+        .brand-logo-img {
+            width: 42px;
+            height: 42px;
+            border-radius: 12px;
+            object-fit: cover;
+            box-shadow: 0 0 20px rgba(20, 184, 166, 0.4), 0 4px 10px rgba(0, 0, 0, 0.25);
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
+            flex-shrink: 0;
+            display: block;
+        }
+        .brand-logo:hover .brand-logo-img {
+            transform: scale(1.06);
+            box-shadow: 0 0 28px rgba(45, 212, 191, 0.65), 0 6px 14px rgba(0, 0, 0, 0.3);
         }
         .nav-menu {
             display: flex;
@@ -1013,9 +1022,7 @@
     <header>
         <div class="container navbar">
             <a href="#" class="brand-logo" aria-label="CashFlow Pro Madagascar">
-                <div class="brand-icon-box">
-                    <svg class="icon"><use href="#icon-bolt"/></svg>
-                </div>
+                <img src="logo.png" alt="CashFlow Pro Logo" class="brand-logo-img" width="42" height="42">
                 <span>CashFlow Pro</span>
             </a>
 
@@ -1066,7 +1073,7 @@
                 <div class="hero-meta-points">
                     <div class="hero-meta-item">
                         <svg class="icon"><use href="#icon-check"/></svg>
-                        <span>Android 7.0 à 15</span>
+                        <span>Android 5.1+ (Lollipop à 15)</span>
                     </div>
                     <div class="hero-meta-item">
                         <svg class="icon"><use href="#icon-check"/></svg>
@@ -1102,7 +1109,7 @@
                         <!-- TopAppBar Material 3 -->
                         <div class="app-topbar">
                             <div class="app-topbar-title">
-                                <svg class="icon" style="width: 20px; height: 20px; color: #111827;"><line x1="4" x2="20" y1="12" y2="12"/><line x1="4" x2="20" y1="6" y2="6"/><line x1="4" x2="20" y1="18" y2="18"/></svg>
+                                <img src="logo.png" alt="Logo" style="width: 22px; height: 22px; border-radius: 6px; flex-shrink: 0;">
                                 <span>CashFlow Pro</span>
                             </div>
                             <div class="app-topbar-actions">
@@ -1202,7 +1209,7 @@
                             <!-- MVola -->
                             <div class="app-balance-row-card">
                                 <div class="app-vertical-bar" style="background: #FFD200;"></div>
-                                <span class="app-balance-label">MVola (*150#)</span>
+                                <span class="app-balance-label">MVola (#111#)</span>
                                 <span class="app-balance-amount">650 000 Ar</span>
                                 <svg class="icon" style="width: 14px; height: 14px; color: #94A3B8;"><path d="m9 18 6-6-6-6"/></svg>
                             </div>
@@ -1210,7 +1217,7 @@
                             <!-- Orange Money -->
                             <div class="app-balance-row-card">
                                 <div class="app-vertical-bar" style="background: #FF7900;"></div>
-                                <span class="app-balance-label">Orange Money (#144#)</span>
+                                <span class="app-balance-label">Orange Money (#145#)</span>
                                 <span class="app-balance-amount">550 000 Ar</span>
                                 <svg class="icon" style="width: 14px; height: 14px; color: #94A3B8;"><path d="m9 18 6-6-6-6"/></svg>
                             </div>
@@ -1270,12 +1277,12 @@
             <div class="op-badge mvola">
                 <span class="op-dot"></span>
                 <span>Telma / MVola</span>
-                <span class="op-ussd">*150#</span>
+                <span class="op-ussd">#111#</span>
             </div>
             <div class="op-badge orange">
                 <span class="op-dot"></span>
                 <span>Orange Money</span>
-                <span class="op-ussd">#144#</span>
+                <span class="op-ussd">#145#</span>
             </div>
             <div class="op-badge airtel">
                 <span class="op-dot"></span>
@@ -1545,10 +1552,8 @@
         <div class="container">
             <div class="footer-grid">
                 <div class="brand-logo" style="color: var(--brand-dark);">
-                    <div class="brand-icon-box" style="width: 32px; height: 32px;">
-                        <svg class="icon" style="width: 16px; height: 16px;"><use href="#icon-bolt"/></svg>
-                    </div>
-                    <span>CashFlow Pro</span>
+                    <img src="logo.png" alt="CashFlow Pro Logo" class="brand-logo-img" style="width: 36px; height: 36px; border-radius: 10px;" width="36" height="36">
+                    <span style="color: var(--brand-dark);">CashFlow Pro</span>
                 </div>
 
                 <div style="display: flex; gap: 20px; flex-wrap: wrap;">

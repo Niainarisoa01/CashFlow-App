@@ -5,8 +5,8 @@ Bienvenue sur le portail public officiel de téléchargement et d'activation de 
 ## 📥 Téléchargement Direct
 - [Télécharger la version officielle (CashFlowPro.apk)](./CashFlowPro.apk)
 - **Version** : 1.1.0 (Production Release)
-- **Signature** : Certifiée RSA 2048 (CN=CashFlow Pro, Madagascar)
-- **Compatibilité** : Android 7.0 à Android 14+ (Tous constructeurs : Samsung, Xiaomi, Motorola, Tecno, Infinix, etc.)
+- **Compatibilité** : Android 5.1 (Lollipop) à Android 15+ (Tous constructeurs : Samsung, Xiaomi, Motorola, Tecno, Infinix, Itel, etc.)
+- **Opérateurs supportés** : MVola (#111#), Orange Money (#145#), Airtel Money (*436#)
 
 ## 🔑 Activation de Licence
 - [Page d'activation web](./activate/)
